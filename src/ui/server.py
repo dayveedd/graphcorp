@@ -60,7 +60,8 @@ def get_cytoscape_graph(graph: Any) -> Dict[str, Any]:
         for node in graph.nodes.values():
             lbl = node.labels[0] if node.labels else "Entity"
             nid = str(node.id)
-            title = node.properties.get("name") or node.properties.get("id") or node.properties.get("title") or f"Node {nid}"
+            p = node.properties
+            title = p.get("name") or p.get("id") or p.get("title") or (f"commit:{p['sha'][:7]}" if p.get("sha") else None) or f"Node {nid}"
             status = node.properties.get("status", "IDLE")
 
             t_key = f"{lbl.lower()}s"
@@ -95,7 +96,7 @@ def get_cytoscape_graph(graph: Any) -> Dict[str, Any]:
         for row in res_nodes.result_set:
             nid, lbls, props = row[0], row[1], row[2]
             lbl = lbls[0] if lbls else "Entity"
-            title = props.get("name") or props.get("id") or props.get("title") or f"Node {nid}"
+            title = props.get("name") or props.get("id") or props.get("title") or (f"commit:{props['sha'][:7]}" if props.get("sha") else None) or f"Node {nid}"
             status = props.get("status", "IDLE")
 
             t_key = f"{lbl.lower()}s"

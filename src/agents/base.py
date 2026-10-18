@@ -41,7 +41,11 @@ class BaseAgent:
         self.status = "IDLE"
         self.current_task_id: Optional[str] = None
         self.event_emitter = event_emitter
-        self.api_key = os.getenv("GEMINI_API_KEY", "")
+        self.gemini_api_key = os.getenv("GEMINI_API_KEY", "")
+        self.qwen_api_key = os.getenv("QWEN_API_KEY") or os.getenv("DASHSCOPE_API_KEY", "")
+        self.qwen_model = os.getenv("QWEN_MODEL", "qwen3.8-flash")
+        self.qwen_base_url = os.getenv("QWEN_BASE_URL", "https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions")
+        self.api_key = self.gemini_api_key
 
     def set_status(self, new_status: str, task_id: Optional[str] = None) -> None:
         """Updates agent status both locally and inside FalkorDB."""
@@ -102,12 +106,47 @@ class BaseAgent:
         fallback_fn: Optional[Callable[[], Any]] = None
     ) -> Any:
         """
-        Executes generation via Gemini 2.5 Flash REST API.
+        Executes generation via Qwen (DashScope) or Gemini REST API.
         Falls back seamlessly to deterministic domain logic if offline or rate-limited.
         """
-        if self.api_key:
+        # 1. Prioritize Qwen Cloud (e.g. qwen3.8-flash) if key is provided
+        if self.qwen_api_key:
             try:
-                url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent?key={self.api_key}"
+                messages = []
+                if system_instruction:
+                    messages.append({"role": "system", "content": system_instruction})
+                messages.append({"role": "user", "content": prompt})
+
+                body = {
+                    "model": self.qwen_model,
+                    "messages": messages,
+                    "temperature": 0.2
+                }
+                if expect_json:
+                    body["response_format"] = {"type": "json_object"}
+
+                headers = {
+                    "Authorization": f"Bearer {self.qwen_api_key}",
+                    "Content-Type": "application/json"
+                }
+                resp = httpx.post(self.qwen_base_url, json=body, headers=headers, timeout=12.0)
+                if resp.status_code == 200:
+                    raw_text = resp.json()["choices"][0]["message"]["content"].strip()
+                    if expect_json:
+                        if raw_text.startswith("```"):
+                            lines = raw_text.splitlines()
+                            raw_text = "\n".join(lines[1:-1] if lines[-1].startswith("```") else lines[1:])
+                        return json.loads(raw_text)
+                    return raw_text
+                else:
+                    logger.warning(f"Qwen API returned status {resp.status_code}: {resp.text[:150]}")
+            except Exception as e:
+                logger.warning(f"Qwen API request failed ({e}). Utilizing fallback.")
+
+        # 2. Fallback to Gemini if configured
+        if self.gemini_api_key:
+            try:
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent?key={self.gemini_api_key}"
                 contents = []
                 if system_instruction:
                     contents.append({"role": "user", "parts": [{"text": f"System Instructions:\n{system_instruction}\n\nTask:\n{prompt}"}]})

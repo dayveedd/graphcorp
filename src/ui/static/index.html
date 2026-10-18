@@ -138,9 +138,16 @@
           <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
           <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300">Pane 1: Living FalkorDB Graph Canvas</h2>
         </div>
-        <div class="flex items-center space-x-2">
-          <button onclick="relayoutGraph()" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-[11px] font-mono transition">Reset Layout</button>
-          <button onclick="refreshGraph()" class="px-2 py-0.5 bg-cyan-950/60 border border-cyan-800/50 hover:bg-cyan-900/60 text-brand-cyan rounded text-[11px] font-mono transition">Sync Graph</button>
+        <div class="flex items-center space-x-1.5">
+          <select id="layout-select" onchange="changeLayout(this.value)" class="bg-[#070B12] border border-slate-700 text-[11px] text-cyan-300 rounded px-2 py-1 font-mono focus:outline-none hover:border-cyan-500 transition">
+            <option value="tiered" selected>🏢 Tiered Enterprise</option>
+            <option value="dag">🌊 DAG Flow Pipeline</option>
+            <option value="concentric">🎯 Concentric Radar</option>
+            <option value="cose">🕸️ Organic Force</option>
+          </select>
+          <button id="btn-toggle-labels" onclick="toggleEdgeLabels()" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-[11px] font-mono transition" title="Toggle visibility of relationship names on lines">🏷️ Labels: Off</button>
+          <button onclick="fitView()" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-[11px] font-mono transition" title="Fit entire graph to view">🔍 Fit</button>
+          <button onclick="refreshGraph()" class="px-2 py-1 bg-cyan-950/60 border border-cyan-800/50 hover:bg-cyan-900/60 text-brand-cyan rounded text-[11px] font-mono transition">Sync</button>
         </div>
       </div>
       <!-- Graph Canvas Container -->
@@ -275,40 +282,50 @@ tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
   <script>
     let cy = null;
     let eventSource = null;
+    let currentLayout = 'tiered';
+    let showEdgeLabels = false;
 
-    // Initialize Cytoscape.js
+    // Initialize Cytoscape.js with structured styling
     function initCytoscape() {
       cy = cytoscape({
         container: document.getElementById('cy-canvas'),
         boxSelectionEnabled: false,
         autounselectify: true,
         style: [
+          // Base Node Style
           {
             selector: 'node',
             style: {
               'label': 'data(label)',
-              'color': '#E2E8F0',
+              'color': '#F1F5F9',
               'font-size': '10px',
-              'font-family': 'Inter, sans-serif',
+              'font-weight': 600,
+              'font-family': 'Inter, system-ui, sans-serif',
               'text-valign': 'bottom',
-              'text-margin-y': 5,
+              'text-margin-y': 6,
+              'text-background-color': '#070B12',
+              'text-background-opacity': 0.85,
+              'text-background-padding': '3px',
+              'text-background-shape': 'roundrectangle',
               'background-color': '#1E293B',
               'border-width': 2,
-              'border-color': '#334155',
-              'width': 28,
-              'height': 28,
-              'transition-property': 'background-color, border-color, width, height',
-              'transition-duration': '0.3s'
+              'border-color': '#475569',
+              'width': 30,
+              'height': 30,
+              'transition-property': 'background-color, border-color, width, height, opacity',
+              'transition-duration': '0.25s'
             }
           },
           // Node category styles
           {
             selector: 'node[type="agent"]',
             style: {
-              'background-color': '#082f49',
+              'background-color': '#0c4a6e',
               'border-color': '#00E5FF',
+              'border-width': 2.5,
               'width': 34,
               'height': 34,
+              'color': '#38BDF8'
             }
           },
           {
@@ -317,8 +334,9 @@ tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
               'background-color': '#451a03',
               'border-color': '#F59E0B',
               'shape': 'round-rectangle',
-              'width': 32,
+              'width': 34,
               'height': 24,
+              'color': '#FCD34D'
             }
           },
           {
@@ -326,6 +344,7 @@ tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
             style: {
               'background-color': '#064e3b',
               'border-color': '#10B981',
+              'color': '#6EE7B7'
             }
           },
           {
@@ -333,16 +352,18 @@ tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
             style: {
               'background-color': '#78350f',
               'border-color': '#FBBF24',
+              'color': '#FDE68A'
             }
           },
           {
             selector: 'node[type="component"]',
             style: {
-              'background-color': '#022c22',
-              'border-color': '#10B981',
+              'background-color': '#042f2e',
+              'border-color': '#14B8A6',
               'shape': 'hexagon',
               'width': 32,
               'height': 32,
+              'color': '#5EEAD4'
             }
           },
           {
@@ -353,6 +374,19 @@ tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
               'shape': 'diamond',
               'width': 30,
               'height': 30,
+              'color': '#E9D5FF'
+            }
+          },
+          {
+            selector: 'node[type="gitcommit"]',
+            style: {
+              'background-color': '#0F172A',
+              'border-color': '#64748B',
+              'shape': 'ellipse',
+              'width': 22,
+              'height': 22,
+              'font-size': '9px',
+              'color': '#94A3B8'
             }
           },
           {
@@ -363,6 +397,7 @@ tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
               'shape': 'triangle',
               'width': 26,
               'height': 26,
+              'color': '#FDA4AF'
             }
           },
           {
@@ -373,9 +408,10 @@ tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
               'shape': 'star',
               'width': 32,
               'height': 32,
+              'color': '#C7D2FE'
             }
           },
-          // Edges
+          // Base Edge Style (Clean, non-cluttering by default)
           {
             selector: 'edge',
             style: {
@@ -384,48 +420,255 @@ tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
               'target-arrow-color': '#334155',
               'target-arrow-shape': 'triangle',
               'curve-style': 'bezier',
-              'label': 'data(label)',
+              'arrow-scale': 0.8,
+              'opacity': 0.45,
               'font-size': '8px',
-              'color': '#64748B',
               'font-family': 'JetBrains Mono, monospace',
               'text-rotation': 'autorotate',
-              'text-margin-y': -6
+              'color': '#94A3B8',
+              'text-background-opacity': 0.85,
+              'text-background-color': '#0B1120',
+              'text-background-padding': '2px',
+              'text-background-shape': 'roundrectangle',
+              'label': ''
+            }
+          },
+          // Highlighting on hover / active
+          {
+            selector: 'edge.highlighted, edge.pulsing',
+            style: {
+              'label': 'data(label)',
+              'line-color': '#00E5FF',
+              'target-arrow-color': '#00E5FF',
+              'width': 2.5,
+              'opacity': 1.0,
+              'color': '#38BDF8',
+              'z-index': 999
             }
           },
           {
-            selector: 'edge.pulsing',
+            selector: 'node.highlighted',
             style: {
-              'line-color': '#00E5FF',
-              'target-arrow-color': '#00E5FF',
-              'width': 3,
-              'transition-property': 'width, line-color',
-              'transition-duration': '0.3s'
+              'border-width': 3.5,
+              'border-color': '#00E5FF',
+              'z-index': 999
+            }
+          },
+          {
+            selector: 'node.dimmed, edge.dimmed',
+            style: {
+              'opacity': 0.2
             }
           }
-        ],
-        layout: {
-          name: 'cose',
-          animate: true,
-          idealEdgeLength: 60,
-          nodeOverlap: 20,
-          refresh: 20,
-          fit: true,
-          padding: 30,
-          randomize: false,
-          componentSpacing: 80,
-          nodeRepulsion: 400000,
-          edgeElasticity: 100,
-          nestingFactor: 5
-        }
+        ]
+      });
+
+      // Hover interaction: highlight connected relationships & blast radius
+      cy.on('mouseover', 'node', function(evt){
+        const node = evt.target;
+        const connectedEdges = node.connectedEdges();
+        const neighborNodes = connectedEdges.connectedNodes();
+
+        cy.elements().addClass('dimmed');
+        node.removeClass('dimmed').addClass('highlighted');
+        connectedEdges.removeClass('dimmed').addClass('highlighted');
+        neighborNodes.removeClass('dimmed');
+      });
+
+      cy.on('mouseout', 'node', function(){
+        cy.elements().removeClass('dimmed highlighted');
       });
 
       // Node click handler
       cy.on('tap', 'node', function(evt){
         const node = evt.target;
         const d = node.data();
+        const title = d.label || d.id;
+        const cat = d.category || d.type;
+        const props = d.properties || {};
+
         document.getElementById('reasoning-rationale').innerText =
-          `Inspected ${d.category} [${d.id}]: ${JSON.stringify(d.properties, null, 2)}`;
+          `[${cat.toUpperCase()}] ${title}
+` +
+          `----------------------------------------
+` +
+          Object.entries(props)
+            .map(([k, v]) => `• ${k}: ${typeof v === 'object' ? JSON.stringify(v) : v}`)
+            .join('\n');
       });
+    }
+
+    // Tiered Enterprise Layout Engine
+    function applyTieredEnterpriseLayout() {
+      if (!cy || cy.nodes().length === 0) return;
+
+      const nodes = cy.nodes();
+      const positions = {};
+      const W = 1150;
+      const startX = 60;
+
+      // Group nodes into enterprise tiers
+      const tier1Gov = [];   // Policies, ADRs
+      const tier1Exec = [];  // CEO, CTO, PM
+      const tier2Eng = [];   // Devs, QA, DevOps
+      const tier3Tasks = []; // TASK-01 ... TASK-06
+      const tier4PRs = [];   // PR-TASK-01 ... PR-TASK-06
+      const tier4Comps = []; // Code components
+      const tier5Commits = []; // GitCommit nodes
+      const tier5Repo = [];  // Repository
+
+      nodes.forEach(n => {
+        const d = n.data();
+        const type = (d.type || '').toLowerCase();
+        const cat = (d.category || '').toLowerCase();
+        const label = (d.label || '').toLowerCase();
+
+        if (type === 'policy' || type === 'decisionrecord' || cat.includes('decision') || cat.includes('policy')) {
+          tier1Gov.push(n);
+        } else if (type === 'agent') {
+          if (label.includes('ceo') || label.includes('cto') || label.includes('pm')) {
+            tier1Exec.push(n);
+          } else {
+            tier2Eng.push(n);
+          }
+        } else if (type === 'task') {
+          tier3Tasks.push(n);
+        } else if (type === 'pr') {
+          tier4PRs.push(n);
+        } else if (type === 'component') {
+          tier4Comps.push(n);
+        } else if (type === 'gitcommit' || cat === 'gitcommit' || label.startsWith('commit:')) {
+          tier5Commits.push(n);
+        } else {
+          tier5Repo.push(n);
+        }
+      });
+
+      // Sort deterministically
+      tier3Tasks.sort((a, b) => (a.data('label') || '').localeCompare(b.data('label') || ''));
+      tier4PRs.sort((a, b) => (a.data('label') || '').localeCompare(b.data('label') || ''));
+      tier5Commits.sort((a, b) => (a.data('label') || '').localeCompare(b.data('label') || ''));
+      tier2Eng.sort((a, b) => (a.data('label') || '').localeCompare(b.data('label') || ''));
+
+      // Row 1: Executive & Governance (Y = 80)
+      const row1 = [...tier1Gov, ...tier1Exec];
+      const r1Step = W / (Math.max(row1.length, 1) + 1);
+      row1.forEach((n, i) => {
+        positions[n.id()] = { x: startX + (i + 1) * r1Step, y: 70 };
+      });
+
+      // Row 2: Engineering Swarm (Y = 210)
+      const r2Step = W / (Math.max(tier2Eng.length, 1) + 1);
+      tier2Eng.forEach((n, i) => {
+        positions[n.id()] = { x: startX + (i + 1) * r2Step, y: 210 };
+      });
+
+      // Row 3: Task DAG Pipeline (Y = 340)
+      const taskCount = Math.max(tier3Tasks.length, 1);
+      const taskStep = W / (taskCount + 1);
+      tier3Tasks.forEach((n, i) => {
+        positions[n.id()] = { x: startX + (i + 1) * taskStep, y: 340 };
+      });
+
+      // Row 4: PRs directly under tasks, Code components placed nicely (Y = 470)
+      tier4PRs.forEach((n, i) => {
+        positions[n.id()] = { x: startX + (i + 1) * taskStep, y: 470 };
+      });
+      const compStep = W / (Math.max(tier4Comps.length, 1) + 1);
+      tier4Comps.forEach((n, i) => {
+        positions[n.id()] = { x: startX + (i + 1) * compStep, y: 535 };
+      });
+
+      // Row 5: Git Commits aligned directly under PRs (Y = 640)
+      tier5Commits.forEach((n, i) => {
+        positions[n.id()] = { x: startX + (i + 1) * taskStep, y: 640 };
+      });
+
+      // Repo artifact node
+      tier5Repo.forEach((n, i) => {
+        positions[n.id()] = { x: W / 2 + startX, y: 720 };
+      });
+
+      cy.nodes().layoutPositions(cy, {
+        name: 'preset',
+        animate: true,
+        animationDuration: 400,
+        fit: true,
+        padding: 50,
+        positions: function(node) {
+          return positions[node.id()] || { x: Math.random() * W, y: 350 };
+        }
+      });
+    }
+
+    // Layout switcher
+    function changeLayout(name) {
+      currentLayout = name;
+      relayoutGraph();
+    }
+
+    function relayoutGraph() {
+      if (!cy || cy.nodes().length === 0) return;
+
+      if (currentLayout === 'tiered') {
+        applyTieredEnterpriseLayout();
+      } else if (currentLayout === 'dag') {
+        cy.layout({
+          name: 'breadthfirst',
+          directed: true,
+          animate: true,
+          spacingFactor: 1.3,
+          avoidOverlap: true,
+          fit: true,
+          padding: 50
+        }).run();
+      } else if (currentLayout === 'concentric') {
+        cy.layout({
+          name: 'concentric',
+          animate: true,
+          padding: 50,
+          startAngle: 3/2 * Math.PI,
+          concentric: function(node) {
+            const t = (node.data('type') || '').toLowerCase();
+            if (t === 'policy' || t === 'decisionrecord') return 5;
+            if (t === 'agent') return 4;
+            if (t === 'task') return 3;
+            if (t === 'pr' || t === 'component') return 2;
+            return 1;
+          },
+          levelWidth: function() { return 1; }
+        }).run();
+      } else {
+        // Spacious Organic Force
+        cy.layout({
+          name: 'cose',
+          animate: true,
+          idealEdgeLength: 160,
+          nodeRepulsion: 1200000,
+          nodeOverlap: 40,
+          componentSpacing: 140,
+          padding: 50,
+          fit: true
+        }).run();
+      }
+    }
+
+    // Toggle Edge Labels
+    function toggleEdgeLabels() {
+      showEdgeLabels = !showEdgeLabels;
+      const btn = document.getElementById('btn-toggle-labels');
+      btn.innerText = `🏷️ Labels: ${showEdgeLabels ? 'ON' : 'OFF'}`;
+      btn.classList.toggle('bg-cyan-900', showEdgeLabels);
+      btn.classList.toggle('text-cyan-300', showEdgeLabels);
+
+      cy.style()
+        .selector('edge')
+        .style('label', showEdgeLabels ? 'data(label)' : '')
+        .update();
+    }
+
+    function fitView() {
+      if (cy) cy.fit(null, 50);
     }
 
     // Fetch and render graph from /api/graph
@@ -447,16 +690,6 @@ tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
       } catch (err) {
         console.error('Failed refreshing graph:', err);
       }
-    }
-
-    function relayoutGraph() {
-      if (!cy) return;
-      cy.layout({
-        name: 'cose',
-        animate: true,
-        fit: true,
-        padding: 40
-      }).run();
     }
 
     // Connect Server-Sent Events (SSE)
