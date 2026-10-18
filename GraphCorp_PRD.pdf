@@ -1,0 +1,1098 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R] /Count 6 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> /F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> /F3 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >> /F4 << /Type /Font /Subtype /Type1 /BaseFont /Courier >> /F5 << /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >> >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 5394 >>
+stream
+0.060 0.090 0.180 rg
+50.00 605.00 512.00 130.00 re f
+0.180 0.450 0.950 rg
+50.00 731.00 512.00 4.00 re f
+1.000 1.000 1.000 rg
+BT /F2 24.0 Tf 68.00 703.00 Td (GRAPHCORP) Tj ET
+0.580 0.740 0.980 rg
+BT /F1 10.0 Tf 68.00 687.00 Td (The Autonomous AI Software Enterprise Powered by FalkorDB & Model Context Protocol) Tj ET
+0.120 0.180 0.320 rg
+0.200 0.300 0.500 RG
+0.75 w
+68.00 617.00 476.00 56.00 re B
+0.900 0.950 1.000 rg
+BT /F2 8.0 Tf 78.00 658.00 Td (HACKATHON: WeMakeDevs Graph Hacks \(Oct 15-18, 2026\)) Tj ET
+0.800 0.880 0.960 rg
+BT /F1 8.0 Tf 78.00 644.00 Td (POWERED BY: FalkorDB \(Primary Graph Database Operating Engine & Enterprise Memory\)) Tj ET
+0.900 0.950 1.000 rg
+BT /F2 8.0 Tf 78.00 630.00 Td (TARGET TRACK: Track 01 \(Agents That Act on Connected Data\) | PRIZE: iPhone 18 Pro) Tj ET
+0.150 0.450 0.950 rg
+50.00 573.00 4.00 16.00 re f
+0.060 0.090 0.180 rg
+BT /F2 12.5 Tf 62.00 577.00 Td (1. Executive Summary & Enterprise Problem Statement) Tj ET
+0.850 0.890 0.940 RG
+0.75 w
+50.00 569.00 m 562.00 569.00 l S
+0.120 0.180 0.320 rg
+BT /F2 10.2 Tf 50.00 549.00 Td (1.1 The Multi-Agent Software Engineering Bottleneck) Tj ET
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 530.20 Td (Current multi-agent frameworks \(CrewAI, AutoGPT, ChatDev\) attempt to build software autonomously, but fail catastrophically in) Tj ET
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 517.70 Td (production environments due to three critical architectural limitations:) Tj ET
+0.180 0.450 0.950 rg
+52.00 502.20 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 500.20 Td (Context Drift & Vector Amnesia: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 200.42 500.20 Td (Flat message histories and vector embeddings lose topological hierarchy. They cannot) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 487.70 Td (represent organizational authority, architectural specifications, or multi-hop dependency graphs over extended sessions.) Tj ET
+0.180 0.450 0.950 rg
+52.00 473.20 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 471.20 Td (Topological Blindspots: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 166.68 471.20 Td (When multiple agents collaborate on a codebase simultaneously, they overwrite shared files, break) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 458.70 Td (internal APIs, and create runtime crashes because vector stores cannot compute downstream blast radius.) Tj ET
+0.180 0.450 0.950 rg
+52.00 444.20 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 442.20 Td (The Demoware Crisis \(Smokes & Mirrors\): ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 242.49 442.20 Td (Existing AI agent demos mock all external side effects. None execute real Git) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 429.70 Td (branch checkouts, real diff reviews, automated pytest suites, or verifiable git merge commits on disk.) Tj ET
+0.120 0.180 0.320 rg
+BT /F2 10.2 Tf 50.00 414.00 Td (1.2 The GraphCorp Solution: Graph-Native Enterprise OS) Tj ET
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 395.20 Td (GraphCorp establishes the world's first fully autonomous AI software enterprise where FalkorDB serves as the central nervous) Tj ET
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 382.70 Td (system: unifying the Organizational Chart, the Task Dependency DAG, the Code Architecture Graph, and the Git Commit Graph) Tj ET
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 370.20 Td (into a single, sub-millisecond Cypher-queryable knowledge graph.) Tj ET
+0.150 0.450 0.950 rg
+50.00 347.50 4.00 16.00 re f
+0.060 0.090 0.180 rg
+BT /F2 12.5 Tf 62.00 351.50 Td (2. High-Level System Architecture & 3-Tier Enterprise Mesh) Tj ET
+0.850 0.890 0.940 RG
+0.75 w
+50.00 343.50 m 562.00 343.50 l S
+0.120 0.180 0.320 rg
+BT /F2 10.2 Tf 50.00 323.50 Td (2.1 The Architectural Trio: Executive, Delivery & Graph Engine) Tj ET
+0.180 0.450 0.950 rg
+52.00 306.70 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 304.70 Td (1. Executive & Planning Tier: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 187.24 304.70 Td (CEO, CTO \(Architect\), and PM \(Scrum Master\) agents ingest user prompts, author formal System) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 292.20 Td (Architecture Records \(ADRs\), decompose features into DAG tasks, and maintain governance.) Tj ET
+0.180 0.450 0.950 rg
+52.00 277.70 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 275.70 Td (2. Engineering & Delivery Tier: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 194.09 275.70 Td (Backend Dev, Frontend Dev, QA Engineer, and DevOps agents query FalkorDB for assigned) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 263.20 Td (tasks, write production code via Model Context Protocol \(MCP\) tools, execute pytest, and open pull requests.) Tj ET
+0.180 0.450 0.950 rg
+52.00 248.70 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 246.70 Td (3. Operating & Storage Tier \(FalkorDB\): ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 230.74 246.70 Td (In-memory graph database providing sub-millisecond Cypher traversals for task) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 234.20 Td (dispatching, DAG topological sorting, real-time code blast-radius analysis, and decision provenance.) Tj ET
+0.820 0.860 0.900 RG
+0.75 w
+50.00 44.00 m 562.00 44.00 l S
+0.450 0.500 0.600 rg
+BT /F1 7.8 Tf 50.00 34.00 Td (Track 01: Agents That Act on Connected Data | Target Prize: iPhone 18 Pro) Tj ET
+0.450 0.500 0.600 rg
+BT /F2 8.0 Tf 527.00 34.00 Td (Page 1 of 6) Tj ET
+
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> /F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> /F3 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >> /F4 << /Type /Font /Subtype /Type1 /BaseFont /Courier >> /F5 << /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >> >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 7496 >>
+stream
+0.120 0.200 0.380 rg
+BT /F2 8.5 Tf 50.00 758.00 Td (GRAPHCORP --- PRODUCT REQUIREMENTS DOCUMENT \(PRD\)) Tj ET
+0.450 0.500 0.600 rg
+BT /F1 8.0 Tf 417.00 758.00 Td (WeMakeDevs Graph Hacks | FalkorDB) Tj ET
+0.820 0.860 0.900 RG
+0.75 w
+50.00 748.00 m 562.00 748.00 l S
+0.050 0.070 0.130 rg
+0.160 0.220 0.340 RG
+0.75 w
+50.00 480.40 512.00 249.60 re B
+0.100 0.140 0.240 rg
+50.00 710.00 512.00 20.00 re f
+0.450 0.750 1.000 rg
+BT /F5 7.5 Tf 60.00 716.00 Td (SYSTEM TOPOLOGY & ORCHESTRATION PIPELINE) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 698.00 Td ( [ Founder Prompt ] ---> \(CEO Agent\) ===> Product Charter & Scope Boundaries) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 688.20 Td (                                ||) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 678.40 Td (                                v) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 668.60 Td (       \(CTO / Architect\)                \(PM / Scrum Master\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 658.80 Td (    - Generates Architecture Specs    - Authors Task Dependency DAG) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 649.00 Td (    - Maps Components & Endpoints     - Computes Critical Path in Cypher) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 639.20 Td (               \\                                /) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 629.40 Td (                v                              v) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 619.60 Td (     +=======================================================================+) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 609.80 Td (     |            FALKORDB CENTRAL OPERATING GRAPH \(The Enterprise OS\)       |) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 600.00 Td (     |   \(:Agent\)-[:MANAGES]->\(:Agent\)   |   \(:Task\)-[:DEPENDS_ON]->\(:Task\)  |) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 590.20 Td (     |   \(:Task\)-[:DELIVERED_BY]->\(:PR\)  |   \(:PR\)-[:AFFECTS]->\(:Component\)  |) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 580.40 Td (     +=======================================================================+) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 570.60 Td (               /                                \\) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 560.80 Td (              v \(Dispatches Ready Tasks\)         v \(Validates PR & Impact\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 551.00 Td (     [ Backend / Core Dev ]               [ QA & Security Reviewer ]) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 541.20 Td (     - Runs MCP Git: branch & commit      - Runs MCP Bash: pytest execution) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 531.40 Td (     - Writes real files to workspace     - Multi-hop diff compliance review) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 521.60 Td (              \\                                  /) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 511.80 Td (               +-------------> [ DevOps Agent ] <+) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 502.00 Td (                       - Executes real git merge) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 492.20 Td (                       - Updates FalkorDB: Marks Task DONE & Unblocks Next!) Tj ET
+0.150 0.450 0.950 rg
+50.00 454.40 4.00 16.00 re f
+0.060 0.090 0.180 rg
+BT /F2 12.5 Tf 62.00 458.40 Td (3. Autonomous Agent Workforce & Role Profiles) Tj ET
+0.850 0.890 0.940 RG
+0.75 w
+50.00 450.40 m 562.00 450.40 l S
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 429.60 Td (GraphCorp establishes an explicit division of labor with strict reporting hierarchies, domain specializations, and cryptographic) Tj ET
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 417.10 Td (review authorities:) Tj ET
+0.150 0.220 0.380 rg
+50.00 390.40 150.00 18.00 re f
+0.180 0.260 0.440 rg
+200.00 390.40 362.00 18.00 re f
+1.000 1.000 1.000 rg
+BT /F2 8.0 Tf 58.00 396.40 Td (Role Title) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 8.0 Tf 208.00 396.40 Td (Responsibilities & Authority Scope) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 372.40 150.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 372.40 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 378.40 Td (CEO \(Chief Executive Officer\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 378.40 Td (Prompt parsing, project charters, business logic constraints, release authorization.) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 354.40 150.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 354.40 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 360.40 Td (CTO / Enterprise Architect) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 360.40 Td (System specifications, component boundaries, data contracts, technology selection.) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 336.40 150.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 336.40 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 342.40 Td (PM / Scrum Master Agent) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 342.40 Td (Translates specs to atomic Task DAGs, Cypher topological sorting, assignment dispatch.) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 318.40 150.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 318.40 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 324.40 Td (Backend & Core Engineer) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 324.40 Td (Queries graph for assigned tasks, writes modules via MCP, commits to feat/ branches.) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 300.40 150.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 300.40 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 306.40 Td (Frontend / UI Engineer) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 306.40 Td (Inspects API endpoint nodes in FalkorDB, writes UI components consuming contracts.) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 282.40 150.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 282.40 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 288.40 Td (QA & Security Tester) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 288.40 Td (Fetches raw git diff, runs automated pytest via MCP, inspects architectural violations.) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 264.40 150.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 264.40 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 270.40 Td (DevOps & Release Engineer) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 270.40 Td (Verifies QA graph approvals, executes fast-forward git merges, packages CLI/dist artifacts.) Tj ET
+0.150 0.450 0.950 rg
+50.00 240.40 4.00 16.00 re f
+0.060 0.090 0.180 rg
+BT /F2 12.5 Tf 62.00 244.40 Td (4. FalkorDB Enterprise Knowledge Graph Schema) Tj ET
+0.850 0.890 0.940 RG
+0.75 w
+50.00 236.40 m 562.00 236.40 l S
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 215.60 Td (The enterprise state is fully reified in FalkorDB across 9 primary node labels and 10 directed relationship types:) Tj ET
+0.120 0.180 0.320 rg
+BT /F2 10.2 Tf 50.00 198.90 Td (4.1 Primary Node Ontology & Attribute Schemas) Tj ET
+0.820 0.860 0.900 RG
+0.75 w
+50.00 44.00 m 562.00 44.00 l S
+0.450 0.500 0.600 rg
+BT /F1 7.8 Tf 50.00 34.00 Td (Track 01: Agents That Act on Connected Data | Target Prize: iPhone 18 Pro) Tj ET
+0.450 0.500 0.600 rg
+BT /F2 8.0 Tf 527.00 34.00 Td (Page 2 of 6) Tj ET
+
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> /F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> /F3 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >> /F4 << /Type /Font /Subtype /Type1 /BaseFont /Courier >> /F5 << /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >> >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 10966 >>
+stream
+0.120 0.200 0.380 rg
+BT /F2 8.5 Tf 50.00 758.00 Td (GRAPHCORP --- PRODUCT REQUIREMENTS DOCUMENT \(PRD\)) Tj ET
+0.450 0.500 0.600 rg
+BT /F1 8.0 Tf 417.00 758.00 Td (WeMakeDevs Graph Hacks | FalkorDB) Tj ET
+0.820 0.860 0.900 RG
+0.75 w
+50.00 748.00 m 562.00 748.00 l S
+0.150 0.220 0.380 rg
+50.00 712.00 130.00 18.00 re f
+0.180 0.260 0.440 rg
+180.00 712.00 382.00 18.00 re f
+1.000 1.000 1.000 rg
+BT /F2 8.0 Tf 58.00 718.00 Td (Node Label) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 8.0 Tf 188.00 718.00 Td (Attributes & Type Signatures) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 694.00 130.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+180.00 694.00 382.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 700.00 Td (\(:Agent\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 188.00 700.00 Td (id \(str\), role \(str\), model \(str\), status \(IDLE | ACTIVE | BLOCKED\), current_task_id \(str\)) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 676.00 130.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+180.00 676.00 382.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 682.00 Td (\(:Project\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 188.00 682.00 Td (id \(str\), name \(str\), repo_path \(str\), target_branch \(str\), created_at \(timestamp\)) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 658.00 130.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+180.00 658.00 382.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 664.00 Td (\(:Task\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 188.00 664.00 Td (id \(str\), title \(str\), status \(TODO | BLOCKED | READY | IN_PROGRESS | IN_REVIEW | DONE\), branch \(str\)) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 640.00 130.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+180.00 640.00 382.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 646.00 Td (\(:Component\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 188.00 646.00 Td (id \(str\), name \(str\), file_path \(str\), language \(str\), exports \(list\), layer \(CORE | CLI | IO\)) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 622.00 130.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+180.00 622.00 382.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 628.00 Td (\(:Endpoint\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 188.00 628.00 Td (id \(str\), path \(str\), method \(GET|POST\), request_schema \(json\), response_schema \(json\)) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 604.00 130.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+180.00 604.00 382.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 610.00 Td (\(:PR\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 188.00 610.00 Td (id \(str\), title \(str\), source_branch \(str\), target_branch \(str\), commit_sha \(str\), status \(OPEN|MERGED\)) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 586.00 130.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+180.00 586.00 382.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 592.00 Td (\(:Commit\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 188.00 592.00 Td (sha \(str\), message \(str\), author \(str\), diff_stat \(str\), timestamp \(timestamp\)) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 568.00 130.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+180.00 568.00 382.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 574.00 Td (\(:Policy\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 188.00 574.00 Td (id \(str\), category \(SECURITY | STYLE\), rule_expression \(str\), severity \(CRITICAL | WARNING\)) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 550.00 130.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+180.00 550.00 382.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 556.00 Td (\(:DecisionRecord\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 188.00 556.00 Td (id \(str\), title \(str\), rationale \(str\), chosen_option \(str\), timestamp \(timestamp\)) Tj ET
+0.120 0.180 0.320 rg
+BT /F2 10.2 Tf 50.00 532.00 Td (4.2 Relationship Taxonomy & Directed Graph Semantics) Tj ET
+0.150 0.220 0.380 rg
+50.00 504.00 240.00 18.00 re f
+0.180 0.260 0.440 rg
+290.00 504.00 272.00 18.00 re f
+1.000 1.000 1.000 rg
+BT /F2 8.0 Tf 58.00 510.00 Td (Relationship Type) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 8.0 Tf 298.00 510.00 Td (Operational Semantics & System Role) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 486.00 240.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+290.00 486.00 272.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 492.00 Td (\(:Agent\)-[:REPORTS_TO]->\(:Agent\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 298.00 492.00 Td (Models corporate organizational hierarchy and approval boundaries.) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 468.00 240.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+290.00 468.00 272.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 474.00 Td (\(:Agent\)-[:ASSIGNED_TO]->\(:Task\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 298.00 474.00 Td (Tracks real-time agent allocation, workload balancing, and ownership.) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 450.00 240.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+290.00 450.00 272.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 456.00 Td (\(:Task\)-[:DEPENDS_ON]->\(:Task\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 298.00 456.00 Td (Encodes prerequisite constraints; drives topological execution order.) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 432.00 240.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+290.00 432.00 272.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 438.00 Td (\(:Component\)-[:IMPLEMENTS]->\(:Task\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 298.00 438.00 Td (Links written source code directly to Jira-style engineering tickets.) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 414.00 240.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+290.00 414.00 272.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 420.00 Td (\(:Component\)-[:CALLS]->\(:Component\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 298.00 420.00 Td (Models internal code call graph; enables pre-commit impact analysis.) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 396.00 240.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+290.00 396.00 272.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 402.00 Td (\(:Agent\)-[:AUTHORED]->\(:PR\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 298.00 402.00 Td (Establishes non-repudiable provenance for code changes and diffs.) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 378.00 240.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+290.00 378.00 272.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 384.00 Td (\(:PR\)-[:HAS_COMMIT]->\(:Commit\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 298.00 384.00 Td (Maps physical git commit SHAs directly to graph PR entities.) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 360.00 240.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+290.00 360.00 272.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 366.00 Td (\(:Agent\)-[:REVIEWED {decision: 'APPROVED'}]->\(:PR\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 298.00 366.00 Td (Cryptographic sign-off required before DevOps merge.) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 342.00 240.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+290.00 342.00 272.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 348.00 Td (\(:Task\)-[:ENFORCES]->\(:Policy\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 298.00 348.00 Td (Associates security standards \(e.g. NIST AES-256\) with code tickets.) Tj ET
+0.050 0.070 0.130 rg
+0.160 0.220 0.340 RG
+0.75 w
+50.00 131.40 512.00 200.60 re B
+0.100 0.140 0.240 rg
+50.00 312.00 512.00 20.00 re f
+0.450 0.750 1.000 rg
+BT /F5 7.5 Tf 60.00 318.00 Td (FALKORDB SCHEMA ONTOLOGY & RELATIONAL TOPOLOGY) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 300.00 Td (  \(CEO\) -[:REPORTS_TO]-> \(Founder\)                  \(:Policy: SecurityStandards\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 290.20 Td (    |                                                          ^) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 280.40 Td (    +---> \(CTO\) ----[:SUPERVISES]----+                         | [:ENFORCES]) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 270.60 Td (    |                                v                         v) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 260.80 Td (    +---> \(PM\) -[:CREATES]-> \(:Task: TASK-01\) -[:DEPENDS_ON]-> \(:Task: TASK-02\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 251.00 Td (                               |                                   |) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 241.20 Td (                        [:ASSIGNED_TO]                      [:ASSIGNED_TO]) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 231.40 Td (                               v                                   v) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 221.60 Td (                         \(BackendDev-1\)                       \(CLIDev-2\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 211.80 Td (                               |                                   |) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 202.00 Td (                          [:AUTHORED]                         [:AUTHORED]) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 192.20 Td (                               v                                   v) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 182.40 Td (                           \(:PR: PR-1\) -[:AFFECTS]-> \(:Component: crypto.py\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 172.60 Td (                               ^) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 162.80 Td (                          [:REVIEWED {decision: 'APPROVED'}]) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 153.00 Td (                               |) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 6.8 Tf 60.00 143.20 Td (                           \(QATester-1\)) Tj ET
+0.150 0.450 0.950 rg
+50.00 105.40 4.00 16.00 re f
+0.060 0.090 0.180 rg
+BT /F2 12.5 Tf 62.00 109.40 Td (5. FalkorDB Cypher Engine & Diagnostic Reasoning Queries) Tj ET
+0.850 0.890 0.940 RG
+0.75 w
+50.00 101.40 m 562.00 101.40 l S
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 80.60 Td (GraphCorp replaces unpredictable LLM agent deliberation with deterministic, sub-millisecond Cypher graph traversals:) Tj ET
+0.820 0.860 0.900 RG
+0.75 w
+50.00 44.00 m 562.00 44.00 l S
+0.450 0.500 0.600 rg
+BT /F1 7.8 Tf 50.00 34.00 Td (Track 01: Agents That Act on Connected Data | Target Prize: iPhone 18 Pro) Tj ET
+0.450 0.500 0.600 rg
+BT /F2 8.0 Tf 527.00 34.00 Td (Page 3 of 6) Tj ET
+
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> /F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> /F3 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >> /F4 << /Type /Font /Subtype /Type1 /BaseFont /Courier >> /F5 << /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >> >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 5292 >>
+stream
+0.120 0.200 0.380 rg
+BT /F2 8.5 Tf 50.00 758.00 Td (GRAPHCORP --- PRODUCT REQUIREMENTS DOCUMENT \(PRD\)) Tj ET
+0.450 0.500 0.600 rg
+BT /F1 8.0 Tf 417.00 758.00 Td (WeMakeDevs Graph Hacks | FalkorDB) Tj ET
+0.820 0.860 0.900 RG
+0.75 w
+50.00 748.00 m 562.00 748.00 l S
+0.050 0.070 0.130 rg
+0.160 0.220 0.340 RG
+0.75 w
+50.00 633.00 512.00 97.00 re B
+0.100 0.140 0.240 rg
+50.00 710.00 512.00 20.00 re f
+0.450 0.750 1.000 rg
+BT /F5 7.5 Tf 60.00 716.00 Td (CYPHER QUERY 1: TOPOLOGICAL TASK DISPATCH \(CRITICAL PATH RESOLUTION\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 698.00 Td (// Automatically discover unblocked tasks whose dependencies are 100% complete) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 687.50 Td (MATCH \(t:Task {status: 'BLOCKED'}\)-[:DEPENDS_ON]->\(dep:Task\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 677.00 Td (WITH t, count\(dep\) AS total_deps, count\(CASE WHEN dep.status = 'DONE' THEN 1 END\) AS done_deps) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 666.50 Td (WHERE total_deps = done_deps) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 656.00 Td (SET t.status = 'READY') Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 645.50 Td (RETURN t.id AS ready_task, t.title AS title, t.branch AS target_branch;) Tj ET
+0.050 0.070 0.130 rg
+0.160 0.220 0.340 RG
+0.75 w
+50.00 524.00 512.00 97.00 re B
+0.100 0.140 0.240 rg
+50.00 601.00 512.00 20.00 re f
+0.450 0.750 1.000 rg
+BT /F5 7.5 Tf 60.00 607.00 Td (CYPHER QUERY 2: MULTI-HOP ARCHITECTURAL IMPACT & BLAST-RADIUS ANALYSIS) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 589.00 Td (// Traverse upstream code graph to compute breaking blast-radius before commit) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 578.50 Td (MATCH path = \(modified:Component {name: $compName}\)<-[:CALLS*1..3]-\(caller:Component\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 568.00 Td (WITH caller, min\(length\(path\)\) AS hop_distance) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 557.50 Td (MATCH \(caller\)-[:IMPLEMENTS]->\(affected_task:Task\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 547.00 Td (RETURN caller.name AS downstream_component, hop_distance, affected_task.id AS ticket_id) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 536.50 Td (ORDER BY hop_distance ASC LIMIT 10;) Tj ET
+0.050 0.070 0.130 rg
+0.160 0.220 0.340 RG
+0.75 w
+50.00 425.50 512.00 86.50 re B
+0.100 0.140 0.240 rg
+50.00 492.00 512.00 20.00 re f
+0.450 0.750 1.000 rg
+BT /F5 7.5 Tf 60.00 498.00 Td (CYPHER QUERY 3: DECISION PROVENANCE & POLICY COMPLIANCE REASONING) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 480.00 Td (// Multi-hop provenance inspection: Explain why an agent selected a specific cipher/policy) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 469.50 Td (MATCH \(a:Agent {role: 'BackendDev'}\)-[:AUTHORED]->\(pr:PR\)-[:AFFECTS]->\(c:Component\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 459.00 Td (MATCH \(c\)-[:IMPLEMENTS]->\(t:Task\)-[:ENFORCES]->\(p:Policy\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 448.50 Td (MATCH \(t\)-[:GOVERNED_BY]->\(adr:DecisionRecord\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 438.00 Td (RETURN a.id AS developer, pr.id AS pull_request, p.name AS security_policy, adr.rationale AS adr_context;) Tj ET
+0.150 0.450 0.950 rg
+50.00 399.50 4.00 16.00 re f
+0.060 0.090 0.180 rg
+BT /F2 12.5 Tf 62.00 403.50 Td (6. Model Context Protocol \(MCP\) Tool Specifications) Tj ET
+0.850 0.890 0.940 RG
+0.75 w
+50.00 395.50 m 562.00 395.50 l S
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 374.70 Td (GraphCorp agents interact with the physical execution plane exclusively through four standard Model Context Protocol \(MCP\) tools:) Tj ET
+0.180 0.450 0.950 rg
+52.00 359.20 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 357.20 Td (1. mcp_falkordb_cypher: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 170.61 357.20 Td (Executes transactional Cypher queries to read state, update task statuses, register PRs, and query) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 344.70 Td (multi-hop provenance.) Tj ET
+0.180 0.450 0.950 rg
+52.00 330.20 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 328.20 Td (2. mcp_git_operations: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 162.78 328.20 Td (Encapsulates physical Git CLI operations: init, branch, checkout, add, commit, diff, and merge on the) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 315.70 Td (workspace.) Tj ET
+0.180 0.450 0.950 rg
+52.00 301.20 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 299.20 Td (3. mcp_filesystem_io: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 157.90 299.20 Td (Provides atomic file creation, file inspection, directory tree listing, and code file writing in target project) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 286.70 Td (repos.) Tj ET
+0.180 0.450 0.950 rg
+52.00 272.20 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 270.20 Td (4. mcp_bash_test_runner: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 175.99 270.20 Td (Executes isolated subprocesses for pytest, python syntax compilation, and exit-code validation.) Tj ET
+0.820 0.860 0.900 RG
+0.75 w
+50.00 44.00 m 562.00 44.00 l S
+0.450 0.500 0.600 rg
+BT /F1 7.8 Tf 50.00 34.00 Td (Track 01: Agents That Act on Connected Data | Target Prize: iPhone 18 Pro) Tj ET
+0.450 0.500 0.600 rg
+BT /F2 8.0 Tf 527.00 34.00 Td (Page 4 of 6) Tj ET
+
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> /F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> /F3 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >> /F4 << /Type /Font /Subtype /Type1 /BaseFont /Courier >> /F5 << /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >> >> >> /Contents 12 0 R >>
+endobj
+12 0 obj
+<< /Length 8465 >>
+stream
+0.120 0.200 0.380 rg
+BT /F2 8.5 Tf 50.00 758.00 Td (GRAPHCORP --- PRODUCT REQUIREMENTS DOCUMENT \(PRD\)) Tj ET
+0.450 0.500 0.600 rg
+BT /F1 8.0 Tf 417.00 758.00 Td (WeMakeDevs Graph Hacks | FalkorDB) Tj ET
+0.820 0.860 0.900 RG
+0.75 w
+50.00 748.00 m 562.00 748.00 l S
+0.050 0.070 0.130 rg
+0.160 0.220 0.340 RG
+0.75 w
+50.00 516.00 512.00 214.00 re B
+0.100 0.140 0.240 rg
+50.00 710.00 512.00 20.00 re f
+0.450 0.750 1.000 rg
+BT /F5 7.5 Tf 60.00 716.00 Td (MODEL CONTEXT PROTOCOL \(MCP\) TOOL MANIFEST \(JSON-RPC DEFINITION\)) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 698.00 Td ({) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 688.00 Td (  "tool": "mcp_git_operations",) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 678.00 Td (  "description": "Executes physical git actions on the workspace repository",) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 668.00 Td (  "parameters": {) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 658.00 Td (    "action": { "type": "string", "enum": ["init", "checkout_branch", "commit", "get_diff", "merge"] },) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 648.00 Td (    "branch_name": { "type": "string" },) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 638.00 Td (    "commit_message": { "type": "string" },) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 628.00 Td (    "files": { "type": "array", "items": { "type": "string" } }) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 618.00 Td (  }) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 608.00 Td (}) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 598.00 Td ({) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 588.00 Td (  "tool": "mcp_bash_test_runner",) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 578.00 Td (  "description": "Runs automated unit tests and linter suites in the project workspace",) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 568.00 Td (  "parameters": {) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 558.00 Td (    "command": { "type": "string", "example": "pytest tests/test_crypto.py -v" },) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 548.00 Td (    "timeout_seconds": { "type": "integer", "default": 30 }) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 538.00 Td (  }) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 528.00 Td (}) Tj ET
+0.150 0.450 0.950 rg
+50.00 490.00 4.00 16.00 re f
+0.060 0.090 0.180 rg
+BT /F2 12.5 Tf 62.00 494.00 Td (7. Real Git Execution Flow & Anti-Hallucination Pipeline) Tj ET
+0.850 0.890 0.940 RG
+0.75 w
+50.00 486.00 m 562.00 486.00 l S
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 465.20 Td (GraphCorp eliminates demoware simulations by executing genuine Git commands and bash tests at every stage:) Tj ET
+0.150 0.220 0.380 rg
+50.00 438.50 150.00 18.00 re f
+0.180 0.260 0.440 rg
+200.00 438.50 362.00 18.00 re f
+1.000 1.000 1.000 rg
+BT /F2 8.0 Tf 58.00 444.50 Td (Execution Phase) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 8.0 Tf 208.00 444.50 Td (Physical Operations & Verification Criteria) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 420.50 150.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 420.50 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 426.50 Td (Phase 1: Repo Scaffolding) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 426.50 Td (DevOps agent initializes workspace directory, runs git init, and commits initial pyproject.toml.) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 402.50 150.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 402.50 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 408.50 Td (Phase 2: Branch & Code) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 408.50 Td (Dev agent checks out feat/crypto-engine, writes src/crypto.py, tests/test_crypto.py, and commits changes.) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 384.50 150.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 384.50 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 390.50 Td (Phase 3: Real Git Diff) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 390.50 Td (Dev opens PR in FalkorDB; QA agent runs git diff main..feat/crypto-engine to inspect raw unified diff.) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 366.50 150.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 366.50 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 372.50 Td (Phase 4: Automated Testing) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 372.50 Td (QA runs pytest tests/ via MCP runner; tests must pass with exit-code 0 before approval is recorded.) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 348.50 150.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 348.50 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 354.50 Td (Phase 5: Graph-Driven Merge) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 354.50 Td (DevOps agent runs git checkout main && git merge feat/crypto; FalkorDB automatically unblocks Task 2.) Tj ET
+0.150 0.450 0.950 rg
+50.00 324.50 4.00 16.00 re f
+0.060 0.090 0.180 rg
+BT /F2 12.5 Tf 62.00 328.50 Td (8. Mission Control UI \(3-Pane Real-Time Dashboard\)) Tj ET
+0.850 0.890 0.940 RG
+0.75 w
+50.00 320.50 m 562.00 320.50 l S
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 299.70 Td (A real-time FastAPI + Cytoscape.js web console provides 100% transparency into company operations:) Tj ET
+0.180 0.450 0.950 rg
+52.00 284.20 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 282.20 Td (Pane 1: Living FalkorDB Graph Canvas: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 232.71 282.20 Td (Renders active nodes and relationships; pulses edges in real time during Cypher) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 269.70 Td (traversals.) Tj ET
+0.180 0.450 0.950 rg
+52.00 255.20 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 253.20 Td (Pane 2: Multi-Hop Reasoning Inspector: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 233.18 253.20 Td (Renders step-by-step breadcrumbs explaining why agents made specific architectural) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 240.70 Td (decisions.) Tj ET
+0.180 0.450 0.950 rg
+52.00 226.20 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 224.20 Td (Pane 3: Live Git & Terminal Stream: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 215.61 224.20 Td (Streams real-time stdout/stderr from pytest runs, git commit SHAs, and PR merges.) Tj ET
+0.150 0.450 0.950 rg
+50.00 202.50 4.00 16.00 re f
+0.060 0.090 0.180 rg
+BT /F2 12.5 Tf 62.00 206.50 Td (9. FalkorDB Rule #3 Compliance Proof) Tj ET
+0.850 0.890 0.940 RG
+0.75 w
+50.00 198.50 m 562.00 198.50 l S
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 177.70 Td (Hackathon Rule #3 mandates: 'If the product still works once FalkorDB is taken out, the graph is decoration.' GraphCorp) Tj ET
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 165.20 Td (fundamentally cannot function without FalkorDB for three decisive reasons:) Tj ET
+0.180 0.450 0.950 rg
+52.00 149.70 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 147.70 Td (1. Recursive DAG Critical-Path Calculation: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 247.38 147.70 Td (Computing unblocked tasks across deep dependency chains in relational SQL) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 135.20 Td (requires heavy recursive CTEs with high latency; FalkorDB traverses paths natively in sub-5ms.) Tj ET
+0.180 0.450 0.950 rg
+52.00 120.70 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 118.70 Td (2. Unified Heterogeneous Graph: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 203.85 118.70 Td (Simultaneously linking Org Roles, Jira Tasks, Python ASTs, Git SHAs, and Policies into a) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 106.20 Td (single navigable model is mathematically impossible in vector databases and flat relational tables.) Tj ET
+0.180 0.450 0.950 rg
+52.00 91.70 4.00 4.00 re f
+0.100 0.140 0.220 rg
+BT /F2 8.8 Tf 64.00 89.70 Td (3. Sub-Millisecond In-Memory Traversal: ) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 235.16 89.70 Td (Agents make dozens of topological decisions per minute; FalkorDB's Redis-based) Tj ET
+0.200 0.220 0.280 rg
+BT /F1 8.8 Tf 64.00 77.20 Td (engine ensures zero stalling or latency lag during autonomous code generation.) Tj ET
+0.820 0.860 0.900 RG
+0.75 w
+50.00 44.00 m 562.00 44.00 l S
+0.450 0.500 0.600 rg
+BT /F1 7.8 Tf 50.00 34.00 Td (Track 01: Agents That Act on Connected Data | Target Prize: iPhone 18 Pro) Tj ET
+0.450 0.500 0.600 rg
+BT /F2 8.0 Tf 527.00 34.00 Td (Page 5 of 6) Tj ET
+
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> /F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> /F3 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >> /F4 << /Type /Font /Subtype /Type1 /BaseFont /Courier >> /F5 << /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >> >> >> /Contents 14 0 R >>
+endobj
+14 0 obj
+<< /Length 4906 >>
+stream
+0.120 0.200 0.380 rg
+BT /F2 8.5 Tf 50.00 758.00 Td (GRAPHCORP --- PRODUCT REQUIREMENTS DOCUMENT \(PRD\)) Tj ET
+0.450 0.500 0.600 rg
+BT /F1 8.0 Tf 417.00 758.00 Td (WeMakeDevs Graph Hacks | FalkorDB) Tj ET
+0.820 0.860 0.900 RG
+0.75 w
+50.00 748.00 m 562.00 748.00 l S
+0.150 0.450 0.950 rg
+50.00 716.00 4.00 16.00 re f
+0.060 0.090 0.180 rg
+BT /F2 12.5 Tf 62.00 720.00 Td (10. Target Demo Artifact & Local Reproduction Kit) Tj ET
+0.850 0.890 0.940 RG
+0.75 w
+50.00 712.00 m 562.00 712.00 l S
+0.180 0.200 0.250 rg
+BT /F1 8.8 Tf 50.00 691.20 Td (The AI Company builds 'dev-vault' --- an enterprise encrypted developer secret store CLI in Python \(AES-256 GCM + Argon2id\):) Tj ET
+0.050 0.070 0.130 rg
+0.160 0.220 0.340 RG
+0.75 w
+50.00 585.50 512.00 97.00 re B
+0.100 0.140 0.240 rg
+50.00 662.50 512.00 20.00 re f
+0.450 0.750 1.000 rg
+BT /F5 7.5 Tf 60.00 668.50 Td (REPRODUCTION INSTRUCTIONS & ENVIRONMENT SETUP) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 650.50 Td (# 1-Command Reproduction with FalkorDB Cloud or Local Docker) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 640.00 Td (git clone https://github.com/WeMakeDevs-GraphHacks/graphcorp && cd graphcorp) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 629.50 Td (export FALKORDB_HOST='your-cloud-host.falkordb.com' FALKORDB_PORT=6379 FALKORDB_PASSWORD='***') Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 619.00 Td (python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt) Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 608.50 Td (python3 main.py --prompt 'Build an enterprise developer secret store CLI with AES-256 GCM') Tj ET
+0.860 0.910 0.980 rg
+BT /F4 7.2 Tf 60.00 598.00 Td (# Watch the Mission Control Dashboard at http://localhost:8000) Tj ET
+0.150 0.450 0.950 rg
+50.00 559.50 4.00 16.00 re f
+0.060 0.090 0.180 rg
+BT /F2 12.5 Tf 62.00 563.50 Td (11. Hackathon Execution Sprint Plan & Submission Deliverables) Tj ET
+0.850 0.890 0.940 RG
+0.75 w
+50.00 555.50 m 562.00 555.50 l S
+0.150 0.220 0.380 rg
+50.00 525.50 150.00 18.00 re f
+0.180 0.260 0.440 rg
+200.00 525.50 362.00 18.00 re f
+1.000 1.000 1.000 rg
+BT /F2 8.0 Tf 58.00 531.50 Td (Sprint Milestone) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 8.0 Tf 208.00 531.50 Td (Deliverables & Verification Goals) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 507.50 150.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 507.50 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 513.50 Td (Phase 1 \(Hours 0-12\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 513.50 Td (FalkorDB graph schema initialization, Cypher helper queries, and MCP Git/Bash tool integration.) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 489.50 150.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 489.50 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 495.50 Td (Phase 2 \(Hours 12-24\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 495.50 Td (Multi-agent autonomous runner \(CEO -> CTO -> PM -> Dev -> QA -> DevOps\) with graph state sync.) Tj ET
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 471.50 150.00 18.00 re B
+0.950 0.970 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 471.50 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 477.50 Td (Phase 3 \(Hours 24-36\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 477.50 Td (Mission Control UI: Cytoscape graph canvas, multi-hop reasoning inspector, and live terminal stream.) Tj ET
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+50.00 453.50 150.00 18.00 re B
+1.000 1.000 1.000 rg
+0.880 0.910 0.950 RG
+0.50 w
+200.00 453.50 362.00 18.00 re B
+0.100 0.180 0.350 rg
+BT /F2 7.5 Tf 58.00 459.50 Td (Phase 4 \(Hours 36-48\)) Tj ET
+0.200 0.240 0.300 rg
+BT /F1 7.5 Tf 208.00 459.50 Td (End-to-end dev-vault verification, 3-minute demo video recording, GitHub README, and Devpost submission.) Tj ET
+0.950 0.970 1.000 rg
+0.200 0.450 0.850 RG
+0.75 w
+50.00 359.50 512.00 84.00 re B
+0.100 0.250 0.650 rg
+BT /F2 8.5 Tf 62.00 429.50 Td (HACKATHON VERIFICATION & SUBMISSION CHECKLIST) Tj ET
+0.180 0.220 0.280 rg
+BT /F1 8.2 Tf 62.00 415.50 Td ([x] Public GitHub Repository with clean commit history, architecture blueprints, and MIT License.) Tj ET
+0.180 0.220 0.280 rg
+BT /F1 8.2 Tf 62.00 402.50 Td ([x] 3-Minute Demo Video: Executive pitch + live graph orchestration + real git diff review + passing pytest.) Tj ET
+0.180 0.220 0.280 rg
+BT /F1 8.2 Tf 62.00 389.50 Td ([x] FalkorDB Cloud & Local Docker support with zero configuration required.) Tj ET
+0.180 0.220 0.280 rg
+BT /F1 8.2 Tf 62.00 376.50 Td ([x] Technical Blog Post on Dev.to / Hashnode competing for Best Technical Article.) Tj ET
+0.820 0.860 0.900 RG
+0.75 w
+50.00 44.00 m 562.00 44.00 l S
+0.450 0.500 0.600 rg
+BT /F1 7.8 Tf 50.00 34.00 Td (Track 01: Agents That Act on Connected Data | Target Prize: iPhone 18 Pro) Tj ET
+0.450 0.500 0.600 rg
+BT /F2 8.0 Tf 527.00 34.00 Td (Page 6 of 6) Tj ET
+
+endstream
+endobj
+xref
+0 15
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000153 00000 n 
+0000000578 00000 n 
+0000006024 00000 n 
+0000006449 00000 n 
+0000013997 00000 n 
+0000014422 00000 n 
+0000025441 00000 n 
+0000025867 00000 n 
+0000031212 00000 n 
+0000031639 00000 n 
+0000040157 00000 n 
+0000040584 00000 n 
+trailer
+<< /Size 15 /Root 1 0 R >>
+startxref
+45543
+%%EOF

@@ -283,10 +283,20 @@ Provides atomic file persistence for encrypted vault payloads.
 """
 
 import os
+import sys
 import json
 import tempfile
+from pathlib import Path
 from typing import Dict, Any, Optional
-from src.crypto import VaultCipher
+
+_parent = str(Path(__file__).resolve().parent.parent)
+if _parent not in sys.path:
+    sys.path.insert(0, _parent)
+
+try:
+    from src.crypto import VaultCipher
+except ImportError:
+    from crypto import VaultCipher
 
 
 class VaultStorage:
@@ -345,8 +355,18 @@ dev-vault Command Line Interface.
 Provides Click CLI commands: init, set, get, list.
 """
 
+import sys
+from pathlib import Path
 import click
-from src.storage import VaultStorage
+
+_parent = str(Path(__file__).resolve().parent.parent)
+if _parent not in sys.path:
+    sys.path.insert(0, _parent)
+
+try:
+    from src.storage import VaultStorage
+except ImportError:
+    from storage import VaultStorage
 
 
 @click.group()

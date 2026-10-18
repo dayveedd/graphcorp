@@ -5,3 +5,9 @@ __pycache__/
 .DS_Store
 workspace/
 .env
+test_pdf*.py
+test_out.pdf
+test_metrics.py
+fix_encoding.py
+generate_clean_prd.py
+generate_prd.py
