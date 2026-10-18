@@ -660,16 +660,14 @@ tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
         positions[n.id()] = { x: W / 2 + startX, y: 720 };
       });
 
-      cy.nodes().layoutPositions(cy, {
-        name: 'preset',
-        animate: true,
-        animationDuration: 400,
-        fit: true,
-        padding: 50,
-        positions: function(node) {
-          return positions[node.id()] || { x: Math.random() * W, y: 350 };
-        }
+      // Apply positions cleanly to all nodes and refit viewport
+      cy.batch(() => {
+        nodes.forEach(n => {
+          const p = positions[n.id()] || { x: W / 2, y: 350 };
+          n.position(p);
+        });
       });
+      cy.fit(null, 45);
     }
 
     // Layout switcher
