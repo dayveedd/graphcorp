@@ -278,19 +278,48 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Step 2: (Optional) Run FalkorDB via Docker
+### Step 2: Configure Your API Key (.env)
+
+GraphCorp supports **Qwen Cloud (Alibaba DashScope)** and **Google Gemini**, with an automatic zero-configuration fallback if you want to test without an API key:
+
+1. Copy the example environment file:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Add your API key to `.env`:
+
+   #### Option A: Qwen Cloud (Recommended — Fast & Generous Limits)
+   Get an API key from [Alibaba Cloud Model Studio / DashScope](https://www.alibabacloud.com/en/model-studio):
+   ```env
+   QWEN_API_KEY=sk-ws-your-key-here
+   QWEN_MODEL=qwen3.8-flash
+   QWEN_BASE_URL=https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions
+   ```
+   *(Tested models: `qwen3.8-flash`, `qwen3.7-flash`, `qwen3.8-max`, `qwen3.8-max-0902`)*
+
+   #### Option B: Google Gemini
+   Get an API key from [Google AI Studio](https://aistudio.google.com/):
+   ```env
+   GEMINI_API_KEY=your-gemini-api-key
+   ```
+
+   #### Option C: Offline / Zero-Key Evaluation
+   *(If both keys are omitted, GraphCorp runs seamlessly on built-in deterministic domain logic—enabling instant verification with zero external dependencies!)*
+
+### Step 3: (Optional) Run FalkorDB via Docker
 ```bash
 docker run -p 6379:6379 -it --rm falkordb/falkordb:latest
 ```
 *(If Docker is omitted, GraphCorp runs seamlessly with zero external dependencies!)*
 
-### Step 3: Run the Verification Test Suite
+### Step 4: Run the Verification Test Suite
 ```bash
 pytest tests/ -v
 # Output: 15 passed in ~8s
 ```
 
-### Step 4: Run GraphCorp
+### Step 5: Run GraphCorp
 #### Mode A: Headless Autonomous Run (Terminal CLI)
 ```bash
 python run_corp.py --prompt "Build dev-vault: an enterprise developer secret store CLI with AES-256 GCM" --no-ui
