@@ -229,7 +229,7 @@ By grounding autonomous agents in a high-performance graph database like **Falko
 ---
 
 ### Resources & Source Code
-- **GitHub Repository:** [GraphCorp on GitHub](https://github.com/your-username/graphcorp)
+- **GitHub Repository:** [GraphCorp on GitHub](https://github.com/dayveedd/graphcorp)
 - **FalkorDB Official:** [https://falkordb.com](https://falkordb.com)
 - **Live Mission Control UI:** Built with FastAPI + Cytoscape.js
 

@@ -271,7 +271,7 @@ python workspace/dev-vault/src/cli.py get API_KEY --passphrase "Secret123" --pat
 
 ### Step 1: Clone and Set Up Virtual Environment
 ```bash
-git clone https://github.com/your-username/graphcorp.git
+git clone https://github.com/dayveedd/graphcorp.git
 cd graphcorp
 python3 -m venv venv
 source venv/bin/activate
