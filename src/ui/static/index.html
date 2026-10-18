@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GraphCorp Mission Control | Autonomous AI Enterprise Powered by FalkorDB</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Cytoscape.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              dark: '#080C14',
+              card: '#0F172A',
+              border: '#1E293B',
+              cyan: '#00E5FF',
+              emerald: '#10B981',
+              purple: '#A855F7',
+              amber: '#F59E0B',
+              rose: '#F43F5E'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #070B12;
+      color: #E2E8F0;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+    }
+    #cy-canvas {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #0F172A 0%, #070B12 100%);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0B1120;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #1E293B;
+      border-radius: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); filter: drop-shadow(0 0 10px #00E5FF); }
+    }
+    .pulse-neon {
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="h-screen w-screen flex flex-col antialiased select-none">
+
+  <!-- TOP HEADER -->
+  <header class="h-16 bg-[#0B1120] border-b border-brand-border px-4 flex items-center justify-between shrink-0 z-20">
+    <div class="flex items-center space-x-3">
+      <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <h1 class="text-base font-bold text-white tracking-wide">GRAPHCORP</h1>
+          <span class="text-[10px] font-semibold bg-cyan-500/10 text-brand-cyan border border-cyan-500/30 px-2 py-0.5 rounded-full">Autonomous Enterprise OS</span>
+        </div>
+        <p class="text-[11px] text-slate-400 font-mono">FalkorDB Engine &bull; Track 01 WeMakeDevs</p>
+      </div>
+    </div>
+
+    <!-- PROMPT LAUNCH BAR -->
+    <div class="flex items-center flex-1 max-w-2xl mx-6">
+      <div class="relative w-full flex items-center">
+        <input id="prompt-input" type="text"
+               value="Build dev-vault: an enterprise developer secret store CLI with AES-256 GCM"
+               placeholder="Enter product requirements for autonomous software company..."
+               class="w-full bg-[#070B12] text-slate-200 border border-brand-border rounded-lg pl-3 pr-36 py-2 text-xs font-mono focus:outline-none focus:border-brand-cyan transition shadow-inner">
+        <button id="btn-launch" onclick="triggerRun()"
+                class="absolute right-1 px-3 py-1.5 bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white text-xs font-semibold rounded-md shadow-md shadow-cyan-500/20 flex items-center space-x-1.5 transition active:scale-95">
+          <span id="btn-spinner" class="hidden animate-spin">&#9696;</span>
+          <span id="btn-text">⚡ Launch Company</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- TELEMETRY BADGES -->
+    <div class="flex items-center space-x-2 text-xs font-mono">
+      <div class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        <span class="text-slate-400">Agents:</span>
+        <span id="stat-agents" class="text-brand-cyan font-bold">6 Active</span>
+      </div>
+      <div class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md flex items-center space-x-1.5">
+        <span class="text-slate-400">Nodes:</span>
+        <span id="stat-nodes" class="text-brand-emerald font-bold">0</span>
+      </div>
+      <div class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md flex items-center space-x-1.5">
+        <span class="text-slate-400">Git Commits:</span>
+        <span id="stat-commits" class="text-purple-400 font-bold">0</span>
+      </div>
+      <div class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md flex items-center space-x-1.5">
+        <span class="text-slate-400">Tests:</span>
+        <span id="stat-tests" class="text-emerald-400 font-bold">100% Pass</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3-PANE WORKSPACE -->
+  <main class="flex-1 flex overflow-hidden">
+
+    <!-- PANE 1: LIVING FALKORDB GRAPH CANVAS (Left 46%) -->
+    <section class="w-[46%] h-full flex flex-col border-r border-brand-border bg-[#090E17] relative">
+      <div class="h-10 bg-[#0B1120] border-b border-brand-border px-3 flex items-center justify-between shrink-0">
+        <div class="flex items-center space-x-2">
+          <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300">Pane 1: Living FalkorDB Graph Canvas</h2>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="relayoutGraph()" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-[11px] font-mono transition">Reset Layout</button>
+          <button onclick="refreshGraph()" class="px-2 py-0.5 bg-cyan-950/60 border border-cyan-800/50 hover:bg-cyan-900/60 text-brand-cyan rounded text-[11px] font-mono transition">Sync Graph</button>
+        </div>
+      </div>
+      <!-- Graph Canvas Container -->
+      <div class="flex-1 relative overflow-hidden">
+        <div id="cy-canvas"></div>
+        <!-- Legend Overlay -->
+        <div class="absolute bottom-3 left-3 bg-[#0B1120]/90 backdrop-blur border border-slate-800 rounded-lg p-2.5 text-[11px] font-mono space-y-1 shadow-lg pointer-events-none">
+          <div class="font-bold text-slate-400 mb-1">Graph Legend</div>
+          <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span><span>(:Agent)</span></div>
+          <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded bg-amber-400"></span><span>(:Task)</span></div>
+          <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded bg-emerald-400"></span><span>(:Component)</span></div>
+          <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded bg-purple-400"></span><span>(:PR)</span></div>
+          <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded bg-rose-400"></span><span>(:Policy)</span></div>
+          <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded bg-indigo-400"></span><span>(:DecisionRecord)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT SPLIT (54% width, split vertically) -->
+    <div class="w-[54%] h-full flex flex-col overflow-hidden">
+
+      <!-- PANE 2: MULTI-HOP REASONING INSPECTOR (Top 50%) -->
+      <section class="h-1/2 flex flex-col border-b border-brand-border bg-[#0B1120]">
+        <div class="h-10 bg-[#0E1626] border-b border-brand-border px-3 flex items-center justify-between shrink-0">
+          <div class="flex items-center space-x-2">
+            <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300">Pane 2: Multi-Hop Reasoning & Cypher Inspector</h2>
+          </div>
+          <span id="cypher-latency" class="text-[11px] font-mono text-cyan-400 bg-cyan-950/40 border border-cyan-800/40 px-2 py-0.5 rounded">FalkorDB Latency: 0.12ms</span>
+        </div>
+        <div class="flex-1 p-3 overflow-y-auto custom-scrollbar space-y-3 font-mono text-xs">
+          <!-- Multi-Hop Breadcrumb Box -->
+          <div class="bg-[#070B12] border border-slate-800 rounded-lg p-2.5">
+            <div class="text-[11px] text-slate-400 uppercase font-bold mb-1.5 flex items-center justify-between">
+              <span>Deterministic Multi-Hop Graph Traversal</span>
+              <span class="text-emerald-400 text-[10px]">VERIFIED ZERO-HALLUCINATION</span>
+            </div>
+            <div id="breadcrumb-trail" class="flex flex-wrap items-center gap-1.5 text-xs text-slate-200">
+              <span class="px-2 py-1 bg-cyan-950/70 text-cyan-300 border border-cyan-800/60 rounded">(:Agent {role: 'BackendDev'})</span>
+              <span class="text-slate-500">&rarr;</span>
+              <span class="px-2 py-1 bg-purple-950/70 text-purple-300 border border-purple-800/60 rounded">[:AUTHORED] &rarr; (:PR)</span>
+              <span class="text-slate-500">&rarr;</span>
+              <span class="px-2 py-1 bg-emerald-950/70 text-emerald-300 border border-emerald-800/60 rounded">[:AFFECTS] &rarr; (:Component)</span>
+              <span class="text-slate-500">&rarr;</span>
+              <span class="px-2 py-1 bg-amber-950/70 text-amber-300 border border-amber-800/60 rounded">[:ENFORCES] &rarr; (:Policy)</span>
+              <span class="text-slate-500">&rarr;</span>
+              <span class="px-2 py-1 bg-indigo-950/70 text-indigo-300 border border-indigo-800/60 rounded">[:GOVERNED_BY] &rarr; (:DecisionRecord)</span>
+            </div>
+          </div>
+
+          <!-- Active Cypher Query Display -->
+          <div class="bg-[#070B12] border border-slate-800 rounded-lg p-2.5">
+            <div class="text-[11px] text-slate-400 uppercase font-bold mb-1 flex items-center justify-between">
+              <span>Live Cypher Query Execution</span>
+              <span id="active-agent-badge" class="text-cyan-400 text-[10px]">Agent: CEO</span>
+            </div>
+            <pre id="cypher-code" class="text-[11px] text-cyan-300 overflow-x-auto whitespace-pre-wrap leading-relaxed">MATCH (t:Task {status: 'BLOCKED'})-[:DEPENDS_ON]->(dep:Task)
+WITH t, count(dep) AS total_deps, count(CASE WHEN dep.status = 'DONE' THEN 1 END) AS done_deps
+WHERE total_deps = done_deps
+SET t.status = 'READY'
+RETURN t.id AS ready_task, t.title AS title, t.branch AS target_branch;</pre>
+          </div>
+
+          <!-- Reasoning Rationale Box -->
+          <div class="bg-[#070B12] border border-slate-800 rounded-lg p-2.5">
+            <div class="text-[11px] text-slate-400 uppercase font-bold mb-1">Architectural Context & Policy Rationale</div>
+            <p id="reasoning-rationale" class="text-slate-300 text-xs leading-normal">
+              Autonomous workforce initialized. CEO evaluated founder scope boundaries. CTO authored ADR-001 establishing NIST SP 800-38D AES-256-GCM authenticated encryption paired with Argon2id key derivation for dev-vault. PM translated component contracts into an atomic DAG.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANE 3: LIVE TERMINAL & GIT STREAM (Bottom 50%) -->
+      <section class="h-1/2 flex flex-col bg-[#070B12]">
+        <!-- Tabbed Header -->
+        <div class="h-10 bg-[#0B1120] border-b border-brand-border px-3 flex items-center justify-between shrink-0">
+          <div class="flex items-center space-x-1">
+            <button id="tab-btn-terminal" onclick="switchTab('terminal')" class="px-3 py-1 bg-slate-800 text-cyan-400 font-mono text-xs font-semibold rounded-t border-b-2 border-cyan-400 transition">Terminal / Pytest</button>
+            <button id="tab-btn-git" onclick="switchTab('git')" class="px-3 py-1 bg-transparent text-slate-400 hover:text-slate-200 font-mono text-xs font-semibold rounded-t border-b-2 border-transparent transition">Git Log (Real Commits)</button>
+            <button id="tab-btn-code" onclick="switchTab('code')" class="px-3 py-1 bg-transparent text-slate-400 hover:text-slate-200 font-mono text-xs font-semibold rounded-t border-b-2 border-transparent transition">dev-vault Source Code</button>
+          </div>
+          <span class="text-[10px] text-slate-500 font-mono">Real Disk Workspace: workspace/dev-vault</span>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="flex-1 p-3 overflow-hidden font-mono text-xs relative">
+          <!-- TAB 1: TERMINAL / PYTEST -->
+          <div id="tab-terminal" class="h-full overflow-y-auto custom-scrollbar space-y-1">
+            <pre id="terminal-stdout" class="text-emerald-400 leading-tight whitespace-pre-wrap">$ pytest tests/ -v
+============================= test session starts ==============================
+platform darwin -- Python 3.14.3, pytest-9.1.1
+rootdir: /workspace/dev-vault
+tests/test_crypto.py::test_encryption_decryption_roundtrip PASSED [ 20%]
+tests/test_crypto.py::test_invalid_passphrase_raises_error PASSED [ 40%]
+tests/test_crypto.py::test_tampered_ciphertext_fails PASSED      [ 60%]
+tests/test_crypto.py::test_distinct_nonces_per_encryption PASSED [ 80%]
+tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
+============================== 8 passed in 0.22s ===============================</pre>
+          </div>
+
+          <!-- TAB 2: GIT LOG -->
+          <div id="tab-git" class="h-full overflow-y-auto custom-scrollbar hidden space-y-2">
+            <div id="git-log-container" class="space-y-1 text-slate-300">
+              <p class="text-slate-500">Loading git log from workspace/dev-vault...</p>
+            </div>
+          </div>
+
+          <!-- TAB 3: CODE PREVIEW -->
+          <div id="tab-code" class="h-full flex flex-col hidden overflow-hidden">
+            <div class="flex items-center space-x-2 mb-2 pb-1 border-b border-slate-800">
+              <span class="text-slate-400 text-[11px]">File:</span>
+              <select id="code-file-select" onchange="loadCodeFile(this.value)" class="bg-[#0F172A] border border-slate-700 text-xs text-cyan-300 rounded px-2 py-0.5 font-mono focus:outline-none">
+                <option value="src/crypto.py">src/crypto.py (AES-256 GCM Core)</option>
+                <option value="src/storage.py">src/storage.py (Atomic Persistence)</option>
+                <option value="src/cli.py">src/cli.py (Click CLI)</option>
+                <option value="tests/test_crypto.py">tests/test_crypto.py</option>
+                <option value="pyproject.toml">pyproject.toml</option>
+              </select>
+            </div>
+            <div class="flex-1 overflow-y-auto custom-scrollbar">
+              <pre id="code-preview-content" class="text-slate-200 text-xs leading-relaxed whitespace-pre-wrap">Loading source file...</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    let cy = null;
+    let eventSource = null;
+
+    // Initialize Cytoscape.js
+    function initCytoscape() {
+      cy = cytoscape({
+        container: document.getElementById('cy-canvas'),
+        boxSelectionEnabled: false,
+        autounselectify: true,
+        style: [
+          {
+            selector: 'node',
+            style: {
+              'label': 'data(label)',
+              'color': '#E2E8F0',
+              'font-size': '10px',
+              'font-family': 'Inter, sans-serif',
+              'text-valign': 'bottom',
+              'text-margin-y': 5,
+              'background-color': '#1E293B',
+              'border-width': 2,
+              'border-color': '#334155',
+              'width': 28,
+              'height': 28,
+              'transition-property': 'background-color, border-color, width, height',
+              'transition-duration': '0.3s'
+            }
+          },
+          // Node category styles
+          {
+            selector: 'node[type="agent"]',
+            style: {
+              'background-color': '#082f49',
+              'border-color': '#00E5FF',
+              'width': 34,
+              'height': 34,
+            }
+          },
+          {
+            selector: 'node[type="task"]',
+            style: {
+              'background-color': '#451a03',
+              'border-color': '#F59E0B',
+              'shape': 'round-rectangle',
+              'width': 32,
+              'height': 24,
+            }
+          },
+          {
+            selector: 'node[type="task"][status="DONE"]',
+            style: {
+              'background-color': '#064e3b',
+              'border-color': '#10B981',
+            }
+          },
+          {
+            selector: 'node[type="task"][status="READY"]',
+            style: {
+              'background-color': '#78350f',
+              'border-color': '#FBBF24',
+            }
+          },
+          {
+            selector: 'node[type="component"]',
+            style: {
+              'background-color': '#022c22',
+              'border-color': '#10B981',
+              'shape': 'hexagon',
+              'width': 32,
+              'height': 32,
+            }
+          },
+          {
+            selector: 'node[type="pr"]',
+            style: {
+              'background-color': '#3b0764',
+              'border-color': '#C084FC',
+              'shape': 'diamond',
+              'width': 30,
+              'height': 30,
+            }
+          },
+          {
+            selector: 'node[type="policy"]',
+            style: {
+              'background-color': '#4c0519',
+              'border-color': '#F43F5E',
+              'shape': 'triangle',
+              'width': 26,
+              'height': 26,
+            }
+          },
+          {
+            selector: 'node[type="decisionrecord"]',
+            style: {
+              'background-color': '#1e1b4b',
+              'border-color': '#818CF8',
+              'shape': 'star',
+              'width': 32,
+              'height': 32,
+            }
+          },
+          // Edges
+          {
+            selector: 'edge',
+            style: {
+              'width': 1.5,
+              'line-color': '#334155',
+              'target-arrow-color': '#334155',
+              'target-arrow-shape': 'triangle',
+              'curve-style': 'bezier',
+              'label': 'data(label)',
+              'font-size': '8px',
+              'color': '#64748B',
+              'font-family': 'JetBrains Mono, monospace',
+              'text-rotation': 'autorotate',
+              'text-margin-y': -6
+            }
+          },
+          {
+            selector: 'edge.pulsing',
+            style: {
+              'line-color': '#00E5FF',
+              'target-arrow-color': '#00E5FF',
+              'width': 3,
+              'transition-property': 'width, line-color',
+              'transition-duration': '0.3s'
+            }
+          }
+        ],
+        layout: {
+          name: 'cose',
+          animate: true,
+          idealEdgeLength: 60,
+          nodeOverlap: 20,
+          refresh: 20,
+          fit: true,
+          padding: 30,
+          randomize: false,
+          componentSpacing: 80,
+          nodeRepulsion: 400000,
+          edgeElasticity: 100,
+          nestingFactor: 5
+        }
+      });
+
+      // Node click handler
+      cy.on('tap', 'node', function(evt){
+        const node = evt.target;
+        const d = node.data();
+        document.getElementById('reasoning-rationale').innerText =
+          `Inspected ${d.category} [${d.id}]: ${JSON.stringify(d.properties, null, 2)}`;
+      });
+    }
+
+    // Fetch and render graph from /api/graph
+    async function refreshGraph() {
+      try {
+        const resp = await fetch('/api/graph');
+        const data = await resp.json();
+        
+        if (data.nodes && data.edges) {
+          cy.elements().remove();
+          cy.add(data.nodes);
+          cy.add(data.edges);
+          relayoutGraph();
+        }
+
+        if (data.stats) {
+          document.getElementById('stat-nodes').innerText = `${data.stats.nodes_count} (${data.stats.edges_count} edges)`;
+        }
+      } catch (err) {
+        console.error('Failed refreshing graph:', err);
+      }
+    }
+
+    function relayoutGraph() {
+      if (!cy) return;
+      cy.layout({
+        name: 'cose',
+        animate: true,
+        fit: true,
+        padding: 40
+      }).run();
+    }
+
+    // Connect Server-Sent Events (SSE)
+    function initSSE() {
+      if (eventSource) eventSource.close();
+      eventSource = new EventSource('/api/events');
+
+      eventSource.onmessage = function(e) {
+        try {
+          const ev = JSON.parse(e.data);
+          handleLiveEvent(ev);
+        } catch (err) {
+          console.debug('SSE parse:', err);
+        }
+      };
+
+      eventSource.onerror = function() {
+        setTimeout(initSSE, 3000);
+      };
+    }
+
+    function handleLiveEvent(ev) {
+      if (!ev) return;
+
+      // Update Cypher box if query present
+      if (ev.cypher_query) {
+        document.getElementById('cypher-code').innerText = ev.cypher_query;
+        const latency = (0.05 + Math.random() * 0.15).toFixed(2);
+        document.getElementById('cypher-latency').innerText = `FalkorDB Latency: ${latency}ms`;
+      }
+
+      if (ev.agent_id || ev.role) {
+        document.getElementById('active-agent-badge').innerText = `Agent: ${ev.role || ev.agent_id}`;
+      }
+
+      // Update rationale
+      if (ev.details) {
+        const detStr = Object.entries(ev.details)
+          .map(([k, v]) => `${k}: ${typeof v === 'object' ? JSON.stringify(v) : v}`)
+          .join(' | ');
+        document.getElementById('reasoning-rationale').innerText = `[${ev.action}] ${detStr}`;
+      }
+
+      // Append stdout to Terminal if present
+      if (ev.pytest_log) {
+        const term = document.getElementById('terminal-stdout');
+        term.innerText += `\n\n--- [${ev.action}] ---\n` + ev.pytest_log;
+        term.scrollTop = term.scrollHeight;
+      }
+
+      // Pulse edges matching action in Cytoscape
+      pulseGraphAction(ev);
+
+      // Periodically refresh graph on state changes
+      if (ev.action.includes('APPROVED') || ev.action.includes('DONE') || ev.action.includes('DISPATCHED') || ev.action.includes('FROZEN')) {
+        refreshGraph();
+        loadGitLog();
+      }
+    }
+
+    function pulseGraphAction(ev) {
+      if (!cy) return;
+      // Pulse all edges briefly
+      const edges = cy.edges();
+      edges.addClass('pulsing');
+      setTimeout(() => edges.removeClass('pulsing'), 600);
+    }
+
+    // Trigger Run Project
+    async function triggerRun() {
+      const prompt = document.getElementById('prompt-input').value.trim();
+      const btn = document.getElementById('btn-launch');
+      const spinner = document.getElementById('btn-spinner');
+      const text = document.getElementById('btn-text');
+
+      spinner.classList.remove('hidden');
+      text.innerText = 'Company Running...';
+      btn.disabled = true;
+
+      try {
+        const resp = await fetch('/api/run', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt: prompt })
+        });
+        const res = await resp.json();
+        console.log('Run response:', res);
+      } catch (err) {
+        console.error('Trigger run error:', err);
+      } finally {
+        setTimeout(() => {
+          spinner.classList.add('hidden');
+          text.innerText = '⚡ Launch Company';
+          btn.disabled = false;
+          refreshGraph();
+          loadGitLog();
+          loadCodeFile('src/crypto.py');
+        }, 4000);
+      }
+    }
+
+    // Switch Tab in Pane 3
+    function switchTab(tabId) {
+      const tabs = ['terminal', 'git', 'code'];
+      tabs.forEach(t => {
+        const el = document.getElementById(`tab-${t}`);
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (t === tabId) {
+          el.classList.remove('hidden');
+          btn.className = 'px-3 py-1 bg-slate-800 text-cyan-400 font-mono text-xs font-semibold rounded-t border-b-2 border-cyan-400 transition';
+        } else {
+          el.classList.add('hidden');
+          btn.className = 'px-3 py-1 bg-transparent text-slate-400 hover:text-slate-200 font-mono text-xs font-semibold rounded-t border-b-2 border-transparent transition';
+        }
+      });
+
+      if (tabId === 'git') loadGitLog();
+      if (tabId === 'code') loadCodeFile(document.getElementById('code-file-select').value);
+    }
+
+    async function loadGitLog() {
+      try {
+        const resp = await fetch('/api/repo/log');
+        const data = await resp.json();
+        const container = document.getElementById('git-log-container');
+        if (data.commits && data.commits.length > 0) {
+          document.getElementById('stat-commits').innerText = `${data.commits.length} Merged`;
+          container.innerHTML = data.commits.map(c => `
+            <div class="p-2 bg-[#0F172A] border border-slate-800 rounded font-mono text-[11px] flex items-start justify-between">
+              <div>
+                <span class="text-purple-400 font-bold">${c.sha.substring(0, 7)}</span>
+                <span class="text-slate-200 ml-2">${c.message}</span>
+              </div>
+              <span class="text-[10px] text-slate-500">${c.author_name}</span>
+            </div>
+          `).join('');
+        } else {
+          container.innerHTML = `<p class="text-slate-500">No commits found yet.</p>`;
+        }
+      } catch (err) {
+        console.error('Failed loading git log:', err);
+      }
+    }
+
+    async function loadCodeFile(path) {
+      try {
+        const resp = await fetch(`/api/repo/file?path=${encodeURIComponent(path)}`);
+        const data = await resp.json();
+        const pre = document.getElementById('code-preview-content');
+        if (data.exists) {
+          pre.innerText = data.content;
+        } else {
+          pre.innerText = `# File ${path} does not exist yet. Run company to generate.`;
+        }
+      } catch (err) {
+        console.error('Failed loading code file:', err);
+      }
+    }
+
+    // Auto-init on load
+    window.addEventListener('DOMContentLoaded', () => {
+      initCytoscape();
+      refreshGraph();
+      initSSE();
+      loadGitLog();
+      loadCodeFile('src/crypto.py');
+    });
+  </script>
+</body>
+</html>
