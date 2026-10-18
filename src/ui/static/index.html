@@ -75,108 +75,119 @@
 <body class="h-screen w-screen flex flex-col antialiased select-none">
 
   <!-- TOP HEADER -->
-  <header class="h-16 bg-[#0B1120] border-b border-brand-border px-4 flex items-center justify-between shrink-0 z-20">
-    <div class="flex items-center space-x-3">
-      <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <header class="min-h-14 lg:h-16 bg-[#0B1120] border-b border-brand-border px-3 lg:px-4 py-2 flex flex-wrap items-center justify-between shrink-0 z-20 gap-2">
+    <!-- Brand Title -->
+    <div class="flex items-center space-x-2.5 shrink-0">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 shrink-0">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
       </div>
       <div>
-        <div class="flex items-center space-x-2">
-          <h1 class="text-base font-bold text-white tracking-wide">GRAPHCORP</h1>
-          <span class="text-[10px] font-semibold bg-cyan-500/10 text-brand-cyan border border-cyan-500/30 px-2 py-0.5 rounded-full">Autonomous Enterprise OS</span>
+        <div class="flex items-center space-x-1.5">
+          <h1 class="text-sm font-bold text-white tracking-wide">GRAPHCORP</h1>
+          <span class="text-[9px] font-semibold bg-cyan-500/10 text-brand-cyan border border-cyan-500/30 px-1.5 py-0.2 rounded-full hidden sm:inline">Autonomous OS</span>
         </div>
-        <p class="text-[11px] text-slate-400 font-mono">FalkorDB Engine &bull; Track 01 WeMakeDevs</p>
+        <p class="text-[10px] text-slate-400 font-mono">FalkorDB Engine &bull; Track 01</p>
       </div>
     </div>
 
     <!-- PROMPT LAUNCH BAR -->
-    <div class="flex items-center flex-1 max-w-2xl mx-6">
+    <div class="flex items-center flex-1 min-w-[220px] max-w-xl mx-1 md:mx-3 order-3 md:order-2">
       <div class="relative w-full flex items-center">
         <input id="prompt-input" type="text"
                value="Build dev-vault: an enterprise developer secret store CLI with AES-256 GCM"
-               placeholder="Enter product requirements for autonomous software company..."
-               class="w-full bg-[#070B12] text-slate-200 border border-brand-border rounded-lg pl-3 pr-36 py-2 text-xs font-mono focus:outline-none focus:border-brand-cyan transition shadow-inner">
+               placeholder="Enter product requirements..."
+               class="w-full bg-[#070B12] text-slate-200 border border-brand-border rounded-lg pl-2.5 pr-28 py-1.5 text-xs font-mono focus:outline-none focus:border-brand-cyan transition shadow-inner">
         <button id="btn-launch" onclick="triggerRun()"
-                class="absolute right-1 px-3 py-1.5 bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white text-xs font-semibold rounded-md shadow-md shadow-cyan-500/20 flex items-center space-x-1.5 transition active:scale-95">
+                class="absolute right-1 px-2.5 py-1 bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white text-[11px] font-semibold rounded-md shadow-md shadow-cyan-500/20 flex items-center space-x-1 transition active:scale-95 shrink-0">
           <span id="btn-spinner" class="hidden animate-spin">&#9696;</span>
-          <span id="btn-text">⚡ Launch Company</span>
+          <span id="btn-text">⚡ Launch</span>
         </button>
       </div>
     </div>
 
-    <!-- TELEMETRY BADGES -->
-    <div class="flex items-center space-x-2 text-xs font-mono">
-      <div class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md flex items-center space-x-1.5">
-        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-        <span class="text-slate-400">Agents:</span>
-        <span id="stat-agents" class="text-brand-cyan font-bold">6 Active</span>
+    <!-- TELEMETRY BADGES & VIEW SWITCHER -->
+    <div class="flex items-center space-x-1.5 text-xs font-mono order-2 md:order-3 shrink-0">
+      <!-- Responsive View Mode Switcher -->
+      <div class="flex items-center bg-[#070B12] border border-slate-800 rounded-md p-0.5 mr-1">
+        <button id="view-btn-split" onclick="setViewMode('split')" class="px-2 py-0.5 rounded text-[11px] font-semibold transition bg-slate-800 text-cyan-300" title="Split Screen View">🔀 Split</button>
+        <button id="view-btn-graph" onclick="setViewMode('graph')" class="px-2 py-0.5 rounded text-[11px] font-semibold transition text-slate-400 hover:text-slate-200" title="Full Graph View">🗺️ Graph</button>
+        <button id="view-btn-console" onclick="setViewMode('console')" class="px-2 py-0.5 rounded text-[11px] font-semibold transition text-slate-400 hover:text-slate-200" title="Full Console View">💻 Console</button>
       </div>
-      <div class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md flex items-center space-x-1.5">
-        <span class="text-slate-400">Nodes:</span>
+
+      <!-- Compact Badges -->
+      <div class="px-2 py-1 bg-slate-900 border border-slate-800 rounded-md flex items-center space-x-1 text-[11px]" title="Autonomous Agents Active">
+        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+        <span class="text-slate-400 hidden xl:inline">Agents:</span>
+        <span id="stat-agents" class="text-brand-cyan font-bold">6</span>
+      </div>
+      <div class="px-2 py-1 bg-slate-900 border border-slate-800 rounded-md flex items-center space-x-1 text-[11px]" title="FalkorDB Graph Nodes & Edges">
+        <span class="text-slate-400 hidden xl:inline">Nodes:</span>
         <span id="stat-nodes" class="text-brand-emerald font-bold">0</span>
       </div>
-      <div class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md flex items-center space-x-1.5">
-        <span class="text-slate-400">Git Commits:</span>
+      <div class="px-2 py-1 bg-slate-900 border border-slate-800 rounded-md flex items-center space-x-1 text-[11px]" title="Real Git Commits Created">
+        <span class="text-slate-400 hidden xl:inline">Git:</span>
         <span id="stat-commits" class="text-purple-400 font-bold">0</span>
       </div>
-      <div class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md flex items-center space-x-1.5">
-        <span class="text-slate-400">Tests:</span>
-        <span id="stat-tests" class="text-emerald-400 font-bold">100% Pass</span>
+      <div class="px-2 py-1 bg-slate-900 border border-slate-800 rounded-md flex items-center space-x-1 text-[11px]" title="Pytest Automated Test Pass Rate">
+        <span class="text-emerald-400 font-bold">✓ 100%</span>
       </div>
     </div>
   </header>
 
   <!-- 3-PANE WORKSPACE -->
-  <main class="flex-1 flex overflow-hidden">
+  <main class="flex-1 flex overflow-hidden relative">
 
-    <!-- PANE 1: LIVING FALKORDB GRAPH CANVAS (Left 46%) -->
-    <section class="w-[46%] h-full flex flex-col border-r border-brand-border bg-[#090E17] relative">
-      <div class="h-10 bg-[#0B1120] border-b border-brand-border px-3 flex items-center justify-between shrink-0">
-        <div class="flex items-center space-x-2">
+    <!-- PANE 1: LIVING FALKORDB GRAPH CANVAS -->
+    <section id="pane-graph-container" class="w-full md:w-1/2 h-full flex flex-col border-r border-brand-border bg-[#090E17] relative transition-all duration-200">
+      <!-- Pane 1 Compact Responsive Header -->
+      <div class="h-9 bg-[#0B1120] border-b border-brand-border px-2.5 flex items-center justify-between shrink-0 gap-1.5 overflow-x-auto custom-scrollbar">
+        <div class="flex items-center space-x-1.5 shrink-0">
           <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-          <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300">Pane 1: Living FalkorDB Graph Canvas</h2>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 whitespace-nowrap">Living Graph</h2>
         </div>
-        <div class="flex items-center space-x-1.5">
-          <select id="layout-select" onchange="changeLayout(this.value)" class="bg-[#070B12] border border-slate-700 text-[11px] text-cyan-300 rounded px-2 py-1 font-mono focus:outline-none hover:border-cyan-500 transition">
-            <option value="tiered" selected>🏢 Tiered Enterprise</option>
-            <option value="dag">🌊 DAG Flow Pipeline</option>
-            <option value="concentric">🎯 Concentric Radar</option>
-            <option value="cose">🕸️ Organic Force</option>
+        <div class="flex items-center space-x-1 shrink-0">
+          <select id="layout-select" onchange="changeLayout(this.value)" class="bg-[#070B12] border border-slate-700 text-[10px] text-cyan-300 rounded px-1.5 py-0.5 font-mono focus:outline-none hover:border-cyan-500 transition">
+            <option value="tiered" selected>🏢 Tiered</option>
+            <option value="dag">🌊 DAG</option>
+            <option value="concentric">🎯 Radar</option>
+            <option value="cose">🕸️ Force</option>
           </select>
-          <button id="btn-toggle-labels" onclick="toggleEdgeLabels()" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-[11px] font-mono transition" title="Toggle visibility of relationship names on lines">🏷️ Labels: Off</button>
-          <button onclick="fitView()" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-[11px] font-mono transition" title="Fit entire graph to view">🔍 Fit</button>
-          <button onclick="refreshGraph()" class="px-2 py-1 bg-cyan-950/60 border border-cyan-800/50 hover:bg-cyan-900/60 text-brand-cyan rounded text-[11px] font-mono transition">Sync</button>
+          <button id="btn-toggle-labels" onclick="toggleEdgeLabels()" class="px-1.5 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-[10px] font-mono transition" title="Toggle relationship names">🏷️ Labels</button>
+          <button onclick="fitView()" class="px-1.5 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-[10px] font-mono transition" title="Fit to view">🔍 Fit</button>
+          <button onclick="refreshGraph()" class="px-1.5 py-0.5 bg-cyan-950/60 border border-cyan-800/50 hover:bg-cyan-900/60 text-brand-cyan rounded text-[10px] font-mono transition">Sync</button>
         </div>
       </div>
       <!-- Graph Canvas Container -->
-      <div class="flex-1 relative overflow-hidden">
-        <div id="cy-canvas"></div>
-        <!-- Legend Overlay -->
-        <div class="absolute bottom-3 left-3 bg-[#0B1120]/90 backdrop-blur border border-slate-800 rounded-lg p-2.5 text-[11px] font-mono space-y-1 shadow-lg pointer-events-none">
-          <div class="font-bold text-slate-400 mb-1">Graph Legend</div>
-          <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span><span>(:Agent)</span></div>
-          <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded bg-amber-400"></span><span>(:Task)</span></div>
-          <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded bg-emerald-400"></span><span>(:Component)</span></div>
-          <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded bg-purple-400"></span><span>(:PR)</span></div>
-          <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded bg-rose-400"></span><span>(:Policy)</span></div>
-          <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded bg-indigo-400"></span><span>(:DecisionRecord)</span></div>
-        </div>
+      <div class="flex-1 relative overflow-hidden h-full w-full">
+        <div id="cy-canvas" class="w-full h-full"></div>
+        <!-- Compact Collapsible Legend Overlay -->
+        <details class="absolute bottom-2 left-2 bg-[#0B1120]/90 backdrop-blur border border-slate-800 rounded p-1.5 text-[10px] font-mono shadow-lg z-10">
+          <summary class="font-bold text-slate-400 cursor-pointer select-none">Legend</summary>
+          <div class="mt-1 space-y-1">
+            <div class="flex items-center space-x-1.5"><span class="w-2 h-2 rounded-full bg-cyan-400"></span><span>Agent</span></div>
+            <div class="flex items-center space-x-1.5"><span class="w-2 h-2 rounded bg-amber-400"></span><span>Task</span></div>
+            <div class="flex items-center space-x-1.5"><span class="w-2 h-2 rounded bg-emerald-400"></span><span>Component</span></div>
+            <div class="flex items-center space-x-1.5"><span class="w-2 h-2 rounded bg-purple-400"></span><span>PullRequest</span></div>
+            <div class="flex items-center space-x-1.5"><span class="w-2 h-2 rounded bg-rose-400"></span><span>Policy</span></div>
+            <div class="flex items-center space-x-1.5"><span class="w-2 h-2 rounded bg-indigo-400"></span><span>Decision</span></div>
+          </div>
+        </details>
       </div>
     </section>
 
-    <!-- RIGHT SPLIT (54% width, split vertically) -->
-    <div class="w-[54%] h-full flex flex-col overflow-hidden">
+    <!-- RIGHT SPLIT: CONSOLE, REASONING & DISK LOGS -->
+    <div id="pane-console-container" class="w-full md:w-1/2 h-full flex flex-col overflow-hidden transition-all duration-200">
 
-      <!-- PANE 2: MULTI-HOP REASONING INSPECTOR (Top 50%) -->
-      <section class="h-1/2 flex flex-col border-b border-brand-border bg-[#0B1120]">
-        <div class="h-10 bg-[#0E1626] border-b border-brand-border px-3 flex items-center justify-between shrink-0">
-          <div class="flex items-center space-x-2">
+      <!-- PANE 2: MULTI-HOP REASONING INSPECTOR -->
+      <section class="h-[48%] flex flex-col border-b border-brand-border bg-[#0B1120]">
+        <div class="h-9 bg-[#0E1626] border-b border-brand-border px-2.5 flex items-center justify-between shrink-0 gap-1 overflow-x-auto custom-scrollbar">
+          <div class="flex items-center space-x-1.5 shrink-0">
             <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
-            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300">Pane 2: Multi-Hop Reasoning & Cypher Inspector</h2>
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 whitespace-nowrap">Reasoning & Cypher</h2>
           </div>
-          <span id="cypher-latency" class="text-[11px] font-mono text-cyan-400 bg-cyan-950/40 border border-cyan-800/40 px-2 py-0.5 rounded">FalkorDB Latency: 0.12ms</span>
+          <span id="cypher-latency" class="text-[10px] font-mono text-cyan-400 bg-cyan-950/40 border border-cyan-800/40 px-1.5 py-0.5 rounded shrink-0">FalkorDB: 0.08ms</span>
         </div>
         <div class="flex-1 p-3 overflow-y-auto custom-scrollbar space-y-3 font-mono text-xs">
           <!-- Multi-Hop Breadcrumb Box -->
@@ -224,13 +235,13 @@ RETURN t.id AS ready_task, t.title AS title, t.branch AS target_branch;</pre>
       <!-- PANE 3: LIVE TERMINAL & GIT STREAM (Bottom 50%) -->
       <section class="h-1/2 flex flex-col bg-[#070B12]">
         <!-- Tabbed Header -->
-        <div class="h-10 bg-[#0B1120] border-b border-brand-border px-3 flex items-center justify-between shrink-0">
-          <div class="flex items-center space-x-1">
-            <button id="tab-btn-terminal" onclick="switchTab('terminal')" class="px-3 py-1 bg-slate-800 text-cyan-400 font-mono text-xs font-semibold rounded-t border-b-2 border-cyan-400 transition">Terminal / Pytest</button>
-            <button id="tab-btn-git" onclick="switchTab('git')" class="px-3 py-1 bg-transparent text-slate-400 hover:text-slate-200 font-mono text-xs font-semibold rounded-t border-b-2 border-transparent transition">Git Log (Real Commits)</button>
-            <button id="tab-btn-code" onclick="switchTab('code')" class="px-3 py-1 bg-transparent text-slate-400 hover:text-slate-200 font-mono text-xs font-semibold rounded-t border-b-2 border-transparent transition">dev-vault Source Code</button>
+        <div class="h-9 bg-[#0B1120] border-b border-brand-border px-2 flex items-center justify-between shrink-0 overflow-x-auto custom-scrollbar gap-1">
+          <div class="flex items-center space-x-1 shrink-0">
+            <button id="tab-btn-terminal" onclick="switchTab('terminal')" class="px-2.5 py-1 bg-slate-800 text-cyan-400 font-mono text-[11px] font-semibold rounded-t border-b-2 border-cyan-400 transition whitespace-nowrap">Pytest Stream</button>
+            <button id="tab-btn-git" onclick="switchTab('git')" class="px-2.5 py-1 bg-transparent text-slate-400 hover:text-slate-200 font-mono text-[11px] font-semibold rounded-t border-b-2 border-transparent transition whitespace-nowrap">Git Log</button>
+            <button id="tab-btn-code" onclick="switchTab('code')" class="px-2.5 py-1 bg-transparent text-slate-400 hover:text-slate-200 font-mono text-[11px] font-semibold rounded-t border-b-2 border-transparent transition whitespace-nowrap">Source Code</button>
           </div>
-          <span class="text-[10px] text-slate-500 font-mono">Real Disk Workspace: workspace/dev-vault</span>
+          <span class="text-[10px] text-slate-500 font-mono hidden sm:inline whitespace-nowrap">workspace/dev-vault</span>
         </div>
 
         <!-- Tab Contents -->
@@ -284,6 +295,48 @@ tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
     let eventSource = null;
     let currentLayout = 'tiered';
     let showEdgeLabels = false;
+    let currentViewMode = 'split'; // 'split', 'graph', 'console'
+
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      const gPane = document.getElementById('pane-graph-container');
+      const cPane = document.getElementById('pane-console-container');
+      const bSplit = document.getElementById('view-btn-split');
+      const bGraph = document.getElementById('view-btn-graph');
+      const bConsole = document.getElementById('view-btn-console');
+
+      // Reset button styles
+      [bSplit, bGraph, bConsole].forEach(b => {
+        b.className = 'px-2 py-0.5 rounded text-[11px] font-semibold transition text-slate-400 hover:text-slate-200';
+      });
+
+      if (mode === 'graph') {
+        gPane.classList.remove('hidden', 'md:w-1/2');
+        gPane.classList.add('w-full');
+        cPane.classList.add('hidden');
+        bGraph.className = 'px-2 py-0.5 rounded text-[11px] font-semibold transition bg-cyan-950 text-cyan-300 border border-cyan-800/60';
+      } else if (mode === 'console') {
+        cPane.classList.remove('hidden', 'md:w-1/2');
+        cPane.classList.add('w-full');
+        gPane.classList.add('hidden');
+        bConsole.className = 'px-2 py-0.5 rounded text-[11px] font-semibold transition bg-cyan-950 text-cyan-300 border border-cyan-800/60';
+      } else {
+        // Split Mode
+        gPane.classList.remove('hidden', 'w-full');
+        gPane.classList.add('w-full', 'md:w-1/2');
+        cPane.classList.remove('hidden', 'w-full');
+        cPane.classList.add('w-full', 'md:w-1/2');
+        bSplit.className = 'px-2 py-0.5 rounded text-[11px] font-semibold transition bg-slate-800 text-cyan-300';
+      }
+
+      // Automatically refit Cytoscape canvas
+      setTimeout(() => {
+        if (cy) {
+          cy.resize();
+          fitView();
+        }
+      }, 150);
+    }
 
     // Initialize Cytoscape.js with structured styling
     function initCytoscape() {
@@ -461,6 +514,24 @@ tests/test_storage.py::test_vault_storage_save_load PASSED      [100%]
             }
           }
         ]
+      });
+
+      // Observe container resize and dynamically adjust Cytoscape canvas
+      const canvasEl = document.getElementById('cy-canvas');
+      if (window.ResizeObserver && canvasEl) {
+        const ro = new ResizeObserver(() => {
+          if (cy) {
+            cy.resize();
+          }
+        });
+        ro.observe(canvasEl);
+      }
+
+      window.addEventListener('resize', () => {
+        if (cy) {
+          cy.resize();
+          fitView();
+        }
       });
 
       // Hover interaction: highlight connected relationships & blast radius
