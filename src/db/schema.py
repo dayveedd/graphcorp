@@ -72,7 +72,6 @@ def create_indices(graph: Any) -> Dict[str, Any]:
                 graph.query(f"CREATE INDEX ON :{label}({prop})")
                 created += 1
         except Exception as e:
-            # Index may already exist
             errors.append(f"{label}.{prop}: {e}")
 
     logger.info(f"Verified / created {created} graph indices across {len(CORE_NODE_LABELS)} node labels.")
@@ -81,7 +80,7 @@ def create_indices(graph: Any) -> Dict[str, Any]:
 
 def seed_initial_enterprise(graph: Any, clean: bool = False) -> Dict[str, int]:
     """
-    Seeds the complete GraphCorp enterprise knowledge graph:
+    Seeds the complete GraphCorp enterprise knowledge graph with MERGE semantics:
     1. Executive, Planning & Engineering Org Chart
     2. Corporate Security and Quality Policies
     3. Architecture Decision Records (ADRs)
@@ -95,14 +94,32 @@ def seed_initial_enterprise(graph: Any, clean: bool = False) -> Dict[str, int]:
         except Exception as e:
             logger.debug(f"Graph clean exception (ignoring): {e}")
 
-    # Ensure indices are in place
     create_indices(graph)
 
-    # Check if graph is an InMemoryFalkorGraph for optimized direct node/edge creation
     from src.db.in_memory_graph import InMemoryFalkorGraph
     is_in_memory = isinstance(graph, InMemoryFalkorGraph)
-
     now = int(time.time())
+
+    # Helper for in-memory MERGE
+    def merge_node(label: str, props: Dict[str, Any]):
+        if is_in_memory:
+            existing = graph.find_nodes(label, id=props["id"])
+            if existing:
+                existing[0].properties.update(props)
+                return existing[0]
+            return graph.add_node([label], props)
+        return None
+
+    def merge_edge(src_node, relation: str, dest_node, edge_props: Dict[str, Any] = None):
+        if is_in_memory:
+            # Check if edge already exists between src and dest
+            for e in graph.edges.values():
+                if e.relation == relation and e.src_node.id == src_node.id and e.dest_node.id == dest_node.id:
+                    if edge_props:
+                        e.properties.update(edge_props)
+                    return e
+            return graph.add_edge(src_node, relation, dest_node, edge_props or {})
+        return None
 
     # 1. ORG CHART AGENTS
     agents_data = [
@@ -118,14 +135,14 @@ def seed_initial_enterprise(graph: Any, clean: bool = False) -> Dict[str, int]:
     agent_nodes = {}
     for a in agents_data:
         if is_in_memory:
-            agent_nodes[a["id"]] = graph.add_node(["Agent"], a)
+            agent_nodes[a["id"]] = merge_node("Agent", a)
         else:
             graph.query(
-                "CREATE (a:Agent {id: $id, role: $role, model: $model, status: $status, current_task_id: $current_task_id})",
+                "MERGE (a:Agent {id: $id}) "
+                "ON CREATE SET a.role = $role, a.model = $model, a.status = $status, a.current_task_id = $current_task_id",
                 a
             )
 
-    # Org Reporting Relationships
     reports = [
         ("CTO", "CEO"),
         ("PM", "CEO"),
@@ -136,10 +153,10 @@ def seed_initial_enterprise(graph: Any, clean: bool = False) -> Dict[str, int]:
     ]
     for sub, mgr in reports:
         if is_in_memory:
-            graph.add_edge(agent_nodes[sub], "REPORTS_TO", agent_nodes[mgr])
+            merge_edge(agent_nodes[sub], "REPORTS_TO", agent_nodes[mgr])
         else:
             graph.query(
-                "MATCH (sub:Agent {id: $sub}), (mgr:Agent {id: $mgr}) CREATE (sub)-[:REPORTS_TO]->(mgr)",
+                "MATCH (sub:Agent {id: $sub}), (mgr:Agent {id: $mgr}) MERGE (sub)-[:REPORTS_TO]->(mgr)",
                 {"sub": sub, "mgr": mgr}
             )
 
@@ -170,10 +187,11 @@ def seed_initial_enterprise(graph: Any, clean: bool = False) -> Dict[str, int]:
     policy_nodes = {}
     for p in policies_data:
         if is_in_memory:
-            policy_nodes[p["id"]] = graph.add_node(["Policy"], p)
+            policy_nodes[p["id"]] = merge_node("Policy", p)
         else:
             graph.query(
-                "CREATE (p:Policy {id: $id, name: $name, category: $category, rule_expression: $rule_expression, severity: $severity})",
+                "MERGE (p:Policy {id: $id}) "
+                "ON CREATE SET p.name = $name, p.category = $category, p.rule_expression = $rule_expression, p.severity = $severity",
                 p
             )
 
@@ -186,10 +204,11 @@ def seed_initial_enterprise(graph: Any, clean: bool = False) -> Dict[str, int]:
         "timestamp": now
     }
     if is_in_memory:
-        adr_node = graph.add_node(["DecisionRecord"], adr_data)
+        adr_node = merge_node("DecisionRecord", adr_data)
     else:
         graph.query(
-            "CREATE (adr:DecisionRecord {id: $id, title: $title, rationale: $rationale, chosen_option: $chosen_option, timestamp: $timestamp})",
+            "MERGE (adr:DecisionRecord {id: $id}) "
+            "ON CREATE SET adr.title = $title, adr.rationale = $rationale, adr.chosen_option = $chosen_option, adr.timestamp = $timestamp",
             adr_data
         )
 
@@ -202,10 +221,11 @@ def seed_initial_enterprise(graph: Any, clean: bool = False) -> Dict[str, int]:
         "created_at": now
     }
     if is_in_memory:
-        proj_node = graph.add_node(["Project"], proj_data)
+        proj_node = merge_node("Project", proj_data)
     else:
         graph.query(
-            "CREATE (p:Project {id: $id, name: $name, repo_path: $repo_path, target_branch: $target_branch, created_at: $created_at})",
+            "MERGE (p:Project {id: $id}) "
+            "ON CREATE SET p.name = $name, p.repo_path = $repo_path, p.target_branch = $target_branch, p.created_at = $created_at",
             proj_data
         )
 
@@ -239,15 +259,14 @@ def seed_initial_enterprise(graph: Any, clean: bool = False) -> Dict[str, int]:
     comp_nodes = {}
     for c in components_data:
         if is_in_memory:
-            comp_nodes[c["id"]] = graph.add_node(["Component"], c)
+            comp_nodes[c["id"]] = merge_node("Component", c)
         else:
             graph.query(
-                "CREATE (c:Component {id: $id, name: $name, file_path: $file_path, language: $language, layer: $layer})",
+                "MERGE (c:Component {id: $id}) "
+                "ON CREATE SET c.name = $name, c.file_path = $file_path, c.language = $language, c.layer = $layer",
                 c
             )
 
-    # Call graph edges:
-    # CLI calls STORAGE, CLI calls CRYPTO, STORAGE calls CRYPTO
     call_edges = [
         ("COMP-CLI", "COMP-STORAGE"),
         ("COMP-CLI", "COMP-CRYPTO"),
@@ -255,10 +274,10 @@ def seed_initial_enterprise(graph: Any, clean: bool = False) -> Dict[str, int]:
     ]
     for caller, callee in call_edges:
         if is_in_memory:
-            graph.add_edge(comp_nodes[caller], "CALLS", comp_nodes[callee])
+            merge_edge(comp_nodes[caller], "CALLS", comp_nodes[callee])
         else:
             graph.query(
-                "MATCH (c1:Component {id: $c1}), (c2:Component {id: $c2}) CREATE (c1)-[:CALLS]->(c2)",
+                "MATCH (c1:Component {id: $c1}), (c2:Component {id: $c2}) MERGE (c1)-[:CALLS]->(c2)",
                 {"c1": caller, "c2": callee}
             )
 
@@ -327,66 +346,60 @@ def seed_initial_enterprise(graph: Any, clean: bool = False) -> Dict[str, int]:
     for t in tasks_data:
         props = {"id": t["id"], "title": t["title"], "status": t["status"], "branch": t["branch"]}
         if is_in_memory:
-            task_nodes[t["id"]] = graph.add_node(["Task"], props)
+            task_nodes[t["id"]] = merge_node("Task", props)
         else:
             graph.query(
-                "CREATE (t:Task {id: $id, title: $title, status: $status, branch: $branch})",
+                "MERGE (t:Task {id: $id}) "
+                "ON CREATE SET t.title = $title, t.status = $status, t.branch = $branch",
                 props
             )
 
-    # Link task relationships: DEPENDS_ON, ASSIGNED_TO, IMPLEMENTS, ENFORCES, GOVERNED_BY
     for t in tasks_data:
         t_id = t["id"]
-
-        # ASSIGNED_TO
         agent_id = t["assigned_to"]
         if is_in_memory:
-            graph.add_edge(agent_nodes[agent_id], "ASSIGNED_TO", task_nodes[t_id])
+            merge_edge(agent_nodes[agent_id], "ASSIGNED_TO", task_nodes[t_id])
         else:
             graph.query(
-                "MATCH (a:Agent {id: $aid}), (t:Task {id: $tid}) CREATE (a)-[:ASSIGNED_TO]->(t)",
+                "MATCH (a:Agent {id: $aid}), (t:Task {id: $tid}) MERGE (a)-[:ASSIGNED_TO]->(t)",
                 {"aid": agent_id, "tid": t_id}
             )
 
-        # IMPLEMENTS (Component -> Task)
         comp_id = t["implemented_by"]
         if is_in_memory:
-            graph.add_edge(comp_nodes[comp_id], "IMPLEMENTS", task_nodes[t_id])
+            merge_edge(comp_nodes[comp_id], "IMPLEMENTS", task_nodes[t_id])
         else:
             graph.query(
-                "MATCH (c:Component {id: $cid}), (t:Task {id: $tid}) CREATE (c)-[:IMPLEMENTS]->(t)",
+                "MATCH (c:Component {id: $cid}), (t:Task {id: $tid}) MERGE (c)-[:IMPLEMENTS]->(t)",
                 {"cid": comp_id, "tid": t_id}
             )
 
-        # DEPENDS_ON
         for dep_id in t["depends_on"]:
             if is_in_memory:
-                graph.add_edge(task_nodes[t_id], "DEPENDS_ON", task_nodes[dep_id])
+                merge_edge(task_nodes[t_id], "DEPENDS_ON", task_nodes[dep_id])
             else:
                 graph.query(
-                    "MATCH (t1:Task {id: $t1}), (t2:Task {id: $t2}) CREATE (t1)-[:DEPENDS_ON]->(t2)",
+                    "MATCH (t1:Task {id: $t1}), (t2:Task {id: $t2}) MERGE (t1)-[:DEPENDS_ON]->(t2)",
                     {"t1": t_id, "t2": dep_id}
                 )
 
-        # ENFORCES
         if "enforces" in t:
             pol_id = t["enforces"]
             if is_in_memory:
-                graph.add_edge(task_nodes[t_id], "ENFORCES", policy_nodes[pol_id])
+                merge_edge(task_nodes[t_id], "ENFORCES", policy_nodes[pol_id])
             else:
                 graph.query(
-                    "MATCH (t:Task {id: $tid}), (p:Policy {id: $pid}) CREATE (t)-[:ENFORCES]->(p)",
+                    "MATCH (t:Task {id: $tid}), (p:Policy {id: $pid}) MERGE (t)-[:ENFORCES]->(p)",
                     {"tid": t_id, "pid": pol_id}
                 )
 
-        # GOVERNED_BY
         if "governed_by" in t:
             g_adr = t["governed_by"]
             if is_in_memory:
-                graph.add_edge(task_nodes[t_id], "GOVERNED_BY", adr_node)
+                merge_edge(task_nodes[t_id], "GOVERNED_BY", adr_node)
             else:
                 graph.query(
-                    "MATCH (t:Task {id: $tid}), (adr:DecisionRecord {id: $aid}) CREATE (t)-[:GOVERNED_BY]->(adr)",
+                    "MATCH (t:Task {id: $tid}), (adr:DecisionRecord {id: $aid}) MERGE (t)-[:GOVERNED_BY]->(adr)",
                     {"tid": t_id, "aid": g_adr}
                 )
 
@@ -397,5 +410,5 @@ def seed_initial_enterprise(graph: Any, clean: bool = False) -> Dict[str, int]:
         "components": len(components_data),
         "tasks": len(tasks_data),
     }
-    logger.info(f"GraphCorp enterprise graph successfully seeded: {counts}")
+    logger.info(f"GraphCorp enterprise graph successfully seeded (MERGE semantics): {counts}")
     return counts
